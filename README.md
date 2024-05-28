@@ -17,5 +17,5 @@ use the context menu and 7zip will follow your WINE theme.
 
 
 
-[^1] I'll begin development in Qt5 as it'll be until October that I'll get KDE6 (and thus Qt6) on Ubuntu, but I've 
+[^1]: I'll begin development in Qt5 as it'll be until October that I'll get KDE6 (and thus Qt6) on Ubuntu, but I've 
 heard they're not too different and thus porting it later shouldn't be _too_ difficult.   
