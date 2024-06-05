@@ -1,6 +1,6 @@
 # L7z
 This is a Python-based GUI for 7zip on non-Window$ systems.   
-It aims to imitate the official 7zip-GUI's behaviour and layout, while being themable through Qt6[^1] and compatible 
+It aims to imitate the official 7zip-GUI's behaviour and layout, while being themable through Qt6 and compatible 
 with Linux and other *NIXes without the use of WINE.   
 
 ## Why? 
@@ -14,8 +14,3 @@ familiar GUI.
 Please note that I will not be making this whole program within a few days, but until then you can install the official 
 7zip Window$ GUI in a WINE prefix of your choice and use it without having to rely on SNAP. That way you'll be able to 
 use the context menu and 7zip will follow your WINE theme.   
-
-
-
-[^1]: I'll begin development in Qt5 as it'll be until October that I'll get KDE6 (and thus Qt6) on Ubuntu, but I've 
-heard they're not too different and thus porting it later shouldn't be _too_ difficult.   
