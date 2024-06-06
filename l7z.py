@@ -26,7 +26,7 @@ class L7z_GUI(QMainWindow):
     def __init__(self):
         """Initialize the main GUI"""
         super().__init__()
-        self.setWindowTitle('7-zip')
+        self.setWindowTitle(_('7-zip • Unofficial GUI (WIP!)'))
         #self.setWindowIcon()
         ... #TODO:
 
