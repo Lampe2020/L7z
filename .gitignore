@@ -1,2 +1,4 @@
 .idea
 .venv
+/locales/de/LC_MESSAGES/l7z.mo
+/locales/sv/LC_MESSAGES/l7z.mo
