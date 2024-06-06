@@ -9,7 +9,8 @@ to write code together with the goal of creating and maintaining a GUI for 7-zip
 * Tab width: 4 spaces (should when possible actually be inserted as spaces, not tab characters)   
 * Max line length: 120 characters (the PyCharm default right margin line position)   
 * Comments should be tab-aligned (the first character starting the comment should be on a position in the line 
-  divisible by four if the first character in each line is character 0)
+  divisible by four if the first character in each line is character 0)   
+* Use type annotations where possible   
 
 # Issues and PRs   
 If you see a problem in the program and it hasn't been reported yet, feel free to open an Issue on GitHub.   
