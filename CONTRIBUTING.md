@@ -17,6 +17,10 @@ If you see a problem in the program and it hasn't been reported yet, feel free t
 If you can fix any reported issues yourself, feel free to do so in your own fork of the project and then open a PR[^1] 
 to get your fix merged into the main project. If you do so, please follow the above guidelines.   
 
+# Translation
+You are welcome to help with translation. Note that words enclosed in curly braces _MUST NOT_ be translated, as those 
+are treated as variables and will stop L7z from functioning properly if they are translated!
+
 
 
 [^1]: PR stands for "Pull Request". You may know it as MR ("Merge Request") from other platforms, but in this project 
