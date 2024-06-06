@@ -11,7 +11,7 @@ Usage:
 ```
 """
 
-import gettext, os
+import gettext, os, sys, conf
 
 APP_NAME:str = 'l7z'
 LOCALE_DIR:str = os.path.join(os.path.dirname(__file__), 'locales')
@@ -22,11 +22,28 @@ print(gettext.find(domain=APP_NAME, localedir=LOCALE_DIR, languages=['de']))
 lang_de = gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=['de'])
 lang_sv = gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=['sv'])
 
-translate = (lambda msg: msg)
-translate.__doc__ = """
-Dummy translation function.
-To mark strings for translation with this, tell the tool (like e.g. pygettext) to use this as a marker:
-$ pygettext3 -k translate
-"""
+match conf.get('lang'):
+    case 'en':
+        lang_en.install()
+    case 'de':
+        lang_de.install()
+    case 'sv':
+        lang_sv.install()
+    case language:
+        sys_lang:str = conf.get_sys_lang()[:2]
+        try:
+            gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=[sys_lang])
+            print(_('Unsupported lang in conf: {lang}, reverting to {sys_lang}.').format(
+                lang=repr(language),
+                sys_lang=repr(sys_lang)
+            ), file=sys.stderr)
+            conf.set('lang', sys_lang)
+        except:
+            lang_en.install()
+            print(
+                f"Unsupported lang in conf and unsupported system lang ({(lang, sys_lang)=}, reverting to 'en'",
+                file=sys.stderr
+            )
+            conf.set('lang', 'en')
 
-__all__ = [*(lang for lang in locals() if lang.startswith('lang_')), 'translate']
+__all__ = list(obj for obj in locals() if obj.startswith('lang_'))

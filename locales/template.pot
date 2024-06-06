@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-06-06 18:41+0200\n"
+"POT-Creation-Date: 2024-06-06 22:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,15 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: ./l7z.py:17
+#: ./l7z.py:16
 msgid "L7z is not intended to be imported!"
 msgstr ""
 
-#: ./l7z.py:35
+#: ./l7z.py:34
 msgid "Starting L7z on {platform}…"
+msgstr ""
+
+#: ./languages.py:36
+msgid "Unsupported lang in conf: {lang}, reverting to {sys_lang}."
 msgstr ""
 

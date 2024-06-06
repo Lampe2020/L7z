@@ -7,14 +7,13 @@
 TODO: Write short description and usage help, to be output when help is requested from the terminal
 '''
 
-import sys, os
+import sys, os, conf
 
 # Initialize the translation right-away so even the no-import message can be localized.
 from languages import *
-lang_en.install()
 
 if __name__ != '__main__':
-    msg:str = translate("L7z is not intended to be imported!")
+    msg:str = _("L7z is not intended to be imported!")
     print(f'\n\n{msg}\n\n', file=sys.stderr)
     raise ImportError(msg)
 
@@ -32,7 +31,7 @@ class L7z_GUI(QMainWindow):
         ... #TODO:
 
 #debug
-print(translate('Starting L7z on {platform}…').format(platform=sys.platform))
+print(_('Starting L7z on {platform}…').format(platform=sys.platform))
 
 main_window:L7z_GUI = L7z_GUI()
 main_window.show()
