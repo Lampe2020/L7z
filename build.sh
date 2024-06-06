@@ -5,6 +5,13 @@ tmpdir_name="/tmp/$(echo $main_script | md5sum | awk '{ print $1 }')"
 echo "tmpdir_name='${tmpdir_name}_*'"
 rm -rvf "*.spec" "dist_*" "${tmpdir_name}_*"    # Remove files that may get in the way if they're there FIXME: Does nothing?
 
+cd ./locales
+if [ $? == 0 ]
+then
+    ./move_transl.sh
+    cd ..
+fi
+
 pip3 install -r requirements.txt
 pip3 install --upgrade PyInstaller PyCrypto
 python3 -m PyInstaller --workpath="${tmpdir_name}_build_linux" --distpath=./dist_linux --icon=lampe2020_logo.png --onefile $main_script

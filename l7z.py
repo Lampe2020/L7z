@@ -8,17 +8,32 @@ TODO: Write short description and usage help, to be output when help is requeste
 '''
 
 import sys, os
+
+# Initialize the translation right-away so even the no-import message can be localized.
+from languages import *
+lang_en.install()
+
 if __name__ != '__main__':
-    print('\n\nL7z is not intended to be imported!\n\n', file=sys.stderr)
-    raise ImportError('L7z is not intended to be imported!')
+    msg:str = translate("L7z is not intended to be imported!")
+    print(f'\n\n{msg}\n\n', file=sys.stderr)
+    raise ImportError(msg)
 
 from PyQt6.QtWidgets import QApplication, QMainWindow
 
-app = QApplication(sys.argv)
+l7z_app:QApplication = QApplication(sys.argv)
 
-window = QMainWindow()
-window.show()
+class L7z_GUI(QMainWindow):
+    """The main GUI class"""
+    def __init__(self):
+        """Initialize the main GUI"""
+        super().__init__()
+        self.setWindowTitle('7-zip')
+        #self.setWindowIcon()
+        ... #TODO:
 
-...#TODO: Implement the GUI here
+#debug
+print(translate('Starting L7z on {platform}…').format(platform=sys.platform))
 
-app.exec()
+main_window:L7z_GUI = L7z_GUI()
+main_window.show()
+l7z_app.exec()
