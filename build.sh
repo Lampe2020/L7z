@@ -9,8 +9,7 @@ pip3 install -r requirements.txt
 pip3 install --upgrade PyInstaller PyCrypto
 python3 -m PyInstaller --workpath="${tmpdir_name}_build_linux" --distpath=./dist_linux --icon=lampe2020_logo.png --onefile $main_script
 
-# This part is kinda unecessary as there already is a GUI on Window$. I still include it here in case anyone wants to use
-# this on Window$.
+# This part is kinda unecessary as there already is a GUI on Window$. I still include it here in case anyone wants to use this on Window$.
 #
 #wine --version > /dev/null
 #if [ ! -z $? ]
