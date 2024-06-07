@@ -17,7 +17,10 @@ if __name__ != '__main__':
     print(f'\n\n{msg}\n\n', file=sys.stderr)
     raise ImportError(msg)
 
+INSTALL_DIR:str = os.path.dirname(__file__)
+
 from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtGui import QIcon
 
 l7z_app:QApplication = QApplication(sys.argv)
 
@@ -29,6 +32,8 @@ class L7z_GUI(QMainWindow):
         self.setWindowTitle(_('7-zip • Unofficial GUI (WIP!)'))
         #self.setWindowIcon()
         ... #TODO:
+        self.setWindowIcon(QIcon(os.path.join(INSTALL_DIR, 'icons', '7-zip.png')))
+        self.menubar = self.menuBar()
 
 #debug
 print(_('Starting L7z on {platform}…').format(platform=sys.platform))
