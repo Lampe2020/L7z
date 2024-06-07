@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2024-06-07 11:28+0200\n"
+"PO-Revision-Date: 2024-06-07 11:29+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#: l7z.py:16
+msgid "L7z is not intended to be imported!"
+msgstr "L7z är inte avsedd att importeras!"
+
+#: l7z.py:34
+msgid "7-zip • Unofficial GUI (WIP!)"
+msgstr "7-zip • Inofficiell GUI (I arbete!)"
+
+#: l7z.py:39
+msgid "&File"
+msgstr "&Arkiv"
+
+#: l7z.py:40
+msgid "&Help"
+msgstr "&Hjälp"
+
+#: l7z.py:45
+msgid "&Quit"
+msgstr "&Avsluta"
+
+#: l7z.py:46
+msgid "Quit 7-zip"
+msgstr "Avsluta 7-zip"
+
+#: l7z.py:63
+msgid "Starting L7z on {platform}…"
+msgstr "Startar L7z på {platform}…"
+
+#: languages.py:36
+msgid "Unsupported lang in conf: {lang}, reverting to {sys_lang}."
+msgstr "Ostödd språk i conf: {lang}, faller tillbaka till {sys_lang}."
