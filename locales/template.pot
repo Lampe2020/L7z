@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-06-06 23:34+0200\n"
+"POT-Creation-Date: 2024-06-07 11:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,27 @@ msgstr ""
 msgid "L7z is not intended to be imported!"
 msgstr ""
 
-#: ./l7z.py:29
+#: ./l7z.py:34
 msgid "7-zip • Unofficial GUI (WIP!)"
 msgstr ""
 
-#: ./l7z.py:34
+#: ./l7z.py:39
+msgid "&File"
+msgstr ""
+
+#: ./l7z.py:40
+msgid "&Help"
+msgstr ""
+
+#: ./l7z.py:45
+msgid "&Quit"
+msgstr ""
+
+#: ./l7z.py:46
+msgid "Quit 7-zip"
+msgstr ""
+
+#: ./l7z.py:63
 msgid "Starting L7z on {platform}…"
 msgstr ""
 

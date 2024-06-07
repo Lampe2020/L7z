@@ -44,6 +44,6 @@ match conf.get('lang'):
                 f"Unsupported lang in conf and unsupported system lang ({(lang, sys_lang)=}, reverting to 'en'",
                 file=sys.stderr
             )
-            conf.set('lang', 'en')
+            conf.set('lang', value='en')
 
 __all__ = list(obj for obj in locals() if obj.startswith('lang_'))

@@ -22,22 +22,26 @@ def get_sys_lang() -> str:
 
 if not 'L7z' in config.sections():
     config['L7z'] = {
-        'lang': get_sys_lang()[:2]  # For example 'sv_SE.UTF-8' → 'sv'
+        'lang': get_sys_lang()[:2], # For example 'sv_SE.UTF-8' → 'sv'
+        'native_menubar': 'off'
     }
     os.makedirs(os.path.dirname(configpath), exist_ok=True) # Create the config directory if it doesn't already exist
     with open(configpath, 'w') as conf_file:
         config.write(conf_file)
 
-def get(conf_name:str, section:str='L7z') -> any:
+def get(conf_name:str, section:str='L7z', fallback:str='') -> str:
     """
     Retrieve a config value
     :param conf_name:
     :param section:
     :return:
     """
-    return config[section][conf_name]
+    try:
+        return config[section][conf_name]
+    except:
+        return fallback
 
-def set(conf_name:str, value:any, section:str='L7z') -> bool:
+def set(conf_name:str, section:str='L7z', value:any='') -> bool:
     """
     Change a config value
     :param conf_name:
@@ -53,7 +57,46 @@ def set(conf_name:str, value:any, section:str='L7z') -> bool:
     except:
         return False
 
-__all__ = ['get', 'set']
+def getbool(conf_name:str, section:str='L7z', fallback:bool=False) -> bool:
+    """
+    Retrieve a config value as a boolean
+    :param conf_name:
+    :param section:
+    :param fallback:
+    :return:
+    """
+    try:
+        return config.getboolean(section, conf_name)
+    except:
+        return fallback
+
+def getint(conf_name:str, section:str='L7z', fallback:int=0) -> int:
+    """
+    Retrieve a confi value as an int
+    :param conf_name:
+    :param section:
+    :param fallback:
+    :return:
+    """
+    try:
+        return config.getint(section, conf_name)
+    except:
+        return fallback
+
+def getfloat(conf_name:str, section:str='L7z', fallback:float=0) -> float:
+    """
+    Retrieve a confi value as a float
+    :param conf_name:
+    :param section:
+    :param fallback:
+    :return:
+    """
+    try:
+        return config.getfloat(section, conf_name)
+    except:
+        return fallback
+
+__all__ = ['get', 'set', 'getbool', 'getint', 'getfloat']
 
 if __name__ == '__main__':
     """Create a new config or repair the existing one"""

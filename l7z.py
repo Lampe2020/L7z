@@ -19,21 +19,45 @@ if __name__ != '__main__':
 
 INSTALL_DIR:str = os.path.dirname(__file__)
 
-from PyQt6.QtWidgets import QApplication, QMainWindow
-from PyQt6.QtGui import QIcon
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMenuBar, QMenu, QDialog
+from PyQt6.QtGui import QIcon, QAction
 
 l7z_app:QApplication = QApplication(sys.argv)
 
 class L7z_GUI(QMainWindow):
     """The main GUI class"""
+    mb_menus:dict[str, QMenu] = {}
+    ask_quit:bool = False
     def __init__(self):
         """Initialize the main GUI"""
         super().__init__()
         self.setWindowTitle(_('7-zip • Unofficial GUI (WIP!)'))
-        #self.setWindowIcon()
-        ... #TODO:
         self.setWindowIcon(QIcon(os.path.join(INSTALL_DIR, 'icons', '7-zip.png')))
-        self.menubar = self.menuBar()
+        self.menubar:QMenuBar = self.menuBar()
+        self.menubar.setNativeMenuBar(conf.getbool('native_menubar'))
+        self.mb_menus.update({
+            'file': QMenu(_('&File'), self),
+            'help': QMenu(_('&Help'), self)
+        })
+        for menu in self.mb_menus.values():
+            self.menubar.addMenu(menu)
+        self.mb_menus['file'].addSeparator()
+        quit_btn:QAction = QAction(_('&Quit'), self)
+        quit_btn.setStatusTip(_('Quit 7-zip'))
+        quit_btn.triggered.connect(self.quit)
+        self.mb_menus['file'].addAction(quit_btn)
+
+
+    def show_about(self):
+        """Show the "About" dialogue"""
+        ... #TODO: Implement "About" dialog
+
+    def quit(self):
+        """Quit the app smoothly."""
+        if self.ask_quit:
+            ... #TODO: Implement a "Close?" dialog
+        self.destroy(True, True)
+        return sys.exit(0)
 
 #debug
 print(_('Starting L7z on {platform}…').format(platform=sys.platform))
