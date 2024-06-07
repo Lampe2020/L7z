@@ -1,0 +1,4 @@
+files:
+  - source: /locales/template.pot
+    translation: /locales/%two_letters_code%/LC_MESSAGES/l7z.po
+    multilingual: 1
