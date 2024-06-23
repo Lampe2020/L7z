@@ -46,7 +46,9 @@ class L7z_GUI(QMainWindow):
         quit_btn.setStatusTip(_('Quit 7-zip'))
         quit_btn.triggered.connect(self.quit)
         self.mb_menus['file'].addAction(quit_btn)
-        ... # Maybe I should completely start from scratch and redo this whole thing in QML and (I've heard it's possible) JS embedded into that? I'm much more used to HTML+CSS+JS, so that would maybe be closer to that workflow of creating graphical stuff.
+        ... # Maybe I should completely start from scratch and redo this whole thing in QML and (I've heard it's
+        # possible) JS embedded into that? I'm much more used to HTML+CSS+JS, so that would maybe be closer to that
+        # workflow of creating graphical stuff.
 
 
     def show_about(self):
