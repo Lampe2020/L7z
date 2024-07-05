@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-06-07 11:28+0200\n"
+"POT-Creation-Date: 2024-07-05 23:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: ./l7z.py:16
+#: ./l7z.py:17
 msgid "L7z is not intended to be imported!"
 msgstr ""
 
@@ -23,23 +23,83 @@ msgstr ""
 msgid "7-zip • Unofficial GUI (WIP!)"
 msgstr ""
 
-#: ./l7z.py:39
+#: ./l7z.py:51
 msgid "&File"
 msgstr ""
 
-#: ./l7z.py:40
+#: ./l7z.py:52
+msgid "CRC"
+msgstr ""
+
+#: ./l7z.py:53 ./l7z.py:74
+msgid "&Edit"
+msgstr ""
+
+#: ./l7z.py:54 ./l7z.py:73
+msgid "&View"
+msgstr ""
+
+#: ./l7z.py:57
+msgid "Toolbars"
+msgstr ""
+
+#: ./l7z.py:58
+msgid "F&avorites"
+msgstr ""
+
+#: ./l7z.py:59
+msgid "&Add folder to favorites as"
+msgstr ""
+
+#: ./l7z.py:60
+msgid "&Tools"
+msgstr ""
+
+#: ./l7z.py:61
 msgid "&Help"
 msgstr ""
 
-#: ./l7z.py:45
-msgid "&Quit"
+#: ./l7z.py:68
+msgid "&Open"
 msgstr ""
 
-#: ./l7z.py:46
-msgid "Quit 7-zip"
+#: ./l7z.py:68
+msgid "Enter"
 msgstr ""
 
-#: ./l7z.py:63
+#: ./l7z.py:69
+msgid "Ctrl+PgDn"
+msgstr ""
+
+#: ./l7z.py:69
+msgid "Open &Inside"
+msgstr ""
+
+#: ./l7z.py:70
+msgid "Open Inside *"
+msgstr ""
+
+#: ./l7z.py:71
+msgid "Open Inside #"
+msgstr ""
+
+#: ./l7z.py:72
+msgid "Open O&utside"
+msgstr ""
+
+#: ./l7z.py:72
+msgid "Shift+Enter"
+msgstr ""
+
+#: ./l7z.py:73
+msgid "F3"
+msgstr ""
+
+#: ./l7z.py:74
+msgid "F4"
+msgstr ""
+
+#: ./l7z.py:118
 msgid "Starting L7z on {platform}…"
 msgstr ""
 

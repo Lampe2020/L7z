@@ -7,7 +7,8 @@
 TODO: Write short description and usage help, to be output when help is requested from the terminal
 '''
 
-import sys, os, conf
+import sys, os, conf, datetime
+from typing import Callable
 
 # Initialize the translation right-away so even the no-import message can be localized.
 from languages import *
@@ -26,30 +27,85 @@ l7z_app:QApplication = QApplication(sys.argv)
 
 class L7z_GUI(QMainWindow):
     """The main GUI class"""
-    mb_menus:dict[str, QMenu] = {}
     ask_quit:bool = False
     def __init__(self):
         """Initialize the main GUI"""
         super().__init__()
         self.setWindowTitle(_('7-zip • Unofficial GUI (WIP!)'))
         self.setWindowIcon(QIcon(os.path.join(INSTALL_DIR, 'icons', '7-zip.png')))
-        self.menubar:QMenuBar = self.menuBar()
+        self.menubar:QMenuBar = self.__init_menubar(self.menuBar())
         self.menubar.setNativeMenuBar(conf.getbool('native_menubar'))
-        self.mb_menus.update({
-            'file': QMenu(_('&File'), self),
-            'help': QMenu(_('&Help'), self)
-        })
-        for menu in self.mb_menus.values():
-            self.menubar.addMenu(menu)
-        self.mb_menus['file'].addSeparator()
-        quit_btn:QAction = QAction(_('&Quit'), self)
-        quit_btn.setStatusTip(_('Quit 7-zip'))
-        quit_btn.triggered.connect(self.quit)
-        self.mb_menus['file'].addAction(quit_btn)
-        ... # Maybe I should completely start from scratch and redo this whole thing in QML and (I've heard it's
-        # possible) JS embedded into that? I'm much more used to HTML+CSS+JS, so that would maybe be closer to that
-        # workflow of creating graphical stuff.
+        ...
 
+    def __gen_QAction(self, label:str, action:Callable, tooltip:str=None, shortcut:str=None) -> QAction:
+        """Generates a button with the given properties"""
+        btn:QAction = QAction(label)
+        btn.setStatusTip(tooltip)
+        if shortcut:
+            btn.setShortcut(shortcut)
+        btn.triggered.connect(action)
+        return btn
+
+    def __init_menubar(self, mb:QMenuBar) -> QMenuBar:
+        """Initializes the menu bar"""
+        menus:dict[str, QMenu] = {
+            'file': QMenu(_('&File'), self),
+            'edit': QMenu(_('&Edit'), self),
+            'view': QMenu(_('&View'), self),
+            'favorites': QMenu(_('F&avorites'), self),
+            'tools': QMenu(_('&Tools'), self),
+            'help': QMenu(_('&Help'), self)
+        }
+        menus.update({**menus,
+            'file/CRC': QMenu(_('CRC'), menus['file']),
+                                    # ↓ is updated whenever the menu is opened, so doesn't need to be translated
+            'view/timeformat': QMenu(datetime.datetime(1970,1,1,0,0,0).now().strftime('%Y-%m-%d'), menus['view']),
+            'view/toolbars': QMenu(_('Toolbars'), menus['view']),
+            'favorites/add': QMenu(_('&Add folder to favorites as'), menus['favorites'])
+        })
+        # In the following there are a few `if True` blocks, there are just for structuring the code according to the
+        # menu it's currently working on.
+        if True:    # 'file'
+            menus['file'].addActions((
+                self.__gen_QAction(_('&Open'), self.open_selected, self.open_selected.__doc__, _('Enter')),
+                self.__gen_QAction(_('Open &Inside'), self.open_selected_inside, self.open_selected_inside.__doc__, _('Ctrl+PgDn')),
+                self.__gen_QAction(_('Open Inside *'), self.open_selected_star, self.open_selected_star.__doc__, None),
+                self.__gen_QAction(_('Open Inside #'), self.open_selected_hashtag, self.open_selected_hashtag.__doc__, None),
+                self.__gen_QAction(_('Open O&utside'), self.open_selected_outside, self.open_selected_outside.__doc__, _('Shift+Enter')),
+                self.__gen_QAction(_('&View'), self.view_selected, self.view_selected.__doc__, _('F3')),
+                self.__gen_QAction(_('&Edit'), self.edit_selected, self.edit_selected.__doc__, _('F4'))
+            ))
+            menus['file'].addSeparator()
+            ... #TODO: Implement this!
+            mb.addMenu(menus['file'])
+        return mb
+
+    def open_selected(self):
+        """Opens the selected file"""
+        ... #TODO: Implement this!
+
+    def open_selected_inside(self):
+        """Opens the selected file in 7-zip"""
+        ... #TODO: Implement this!
+
+
+    def open_selected_star(self):
+        """Opens the selected file TODO: Find out meaning of star!"""
+        ... #TODO: Implement this!
+    def open_selected_hashtag(self):
+        """Opens the selected file TODO: Find out meaning of hashtag!"""
+        ... #TODO: Implement this!
+    def open_selected_outside(self):
+        """Opens the selected file in an external program"""
+        ... #TODO: Implement this!
+
+    def view_selected(self):
+        """View the selected file"""
+        return self.edit_selected() #TODO: Change this if needed!
+
+    def edit_selected(self):
+        """Edit the selected file"""
+        ... #TODO: Implement this!
 
     def show_about(self):
         """Show the "About" dialogue"""
@@ -67,4 +123,4 @@ print(_('Starting L7z on {platform}…').format(platform=sys.platform))
 
 main_window:L7z_GUI = L7z_GUI()
 main_window.show()
-l7z_app.exec()
+sys.exit(l7z_app.exec())
