@@ -33,21 +33,12 @@ class L7z_GUI(QMainWindow):
         super().__init__()
         self.setWindowTitle(_('7-zip • Unofficial GUI (WIP!)'))
         self.setWindowIcon(QIcon(os.path.join(INSTALL_DIR, 'icons', '7-zip.png')))
-        self.menubar:QMenuBar = self.__init_menubar(self.menuBar())
+        self.menubar:QMenuBar = self.menuBar()
         self.menubar.setNativeMenuBar(conf.getbool('native_menubar'))
-        ...
 
-    def __gen_QAction(self, label:str, action:Callable, tooltip:str=None, shortcut:str=None) -> QAction:
-        """Generates a button with the given properties"""
-        btn:QAction = QAction(label)
-        btn.setStatusTip(tooltip)
-        if shortcut:
-            btn.setShortcut(shortcut)
-        btn.triggered.connect(action)
-        return btn
-
-    def __init_menubar(self, mb:QMenuBar) -> QMenuBar:
-        """Initializes the menu bar"""
+        ###########################
+        # Initialize the menu bar #
+        ###########################
         menus:dict[str, QMenu] = {
             'file': QMenu(_('&File'), self),
             'edit': QMenu(_('&Edit'), self),
@@ -59,7 +50,7 @@ class L7z_GUI(QMainWindow):
         menus.update({**menus,
             'file/CRC': QMenu(_('CRC'), menus['file']),
                                     # ↓ is updated whenever the menu is opened, so doesn't need to be translated
-            'view/timeformat': QMenu(datetime.datetime(1970,1,1,0,0,0).now().strftime('%Y-%m-%d'), menus['view']),
+            'view/timeformat': QMenu(datetime.datetime.now().strftime('%Y-%m-%d'), menus['view']),
             'view/toolbars': QMenu(_('Toolbars'), menus['view']),
             'favorites/add': QMenu(_('&Add folder to favorites as'), menus['favorites'])
         })
@@ -77,8 +68,27 @@ class L7z_GUI(QMainWindow):
             ))
             menus['file'].addSeparator()
             ... #TODO: Implement this!
-            mb.addMenu(menus['file'])
-        return mb
+            self.menubar.addMenu(menus['file']) # FIXME: Menu doesn't open when activated!
+        ... #TODO: Implement this!
+
+        ##########################
+        # Initialize the toolbar #
+        ##########################
+        ... #TODO: Implement this!
+
+        ###############################
+        # Initialize the file view(s) #
+        ###############################
+        ... #TODO: Implement this!
+
+    def __gen_QAction(self, label:str, action:Callable, tooltip:str=None, shortcut:str=None) -> QAction:
+        """Generates a button with the given properties"""
+        btn:QAction = QAction(label)
+        btn.setStatusTip(tooltip)
+        if shortcut:
+            btn.setShortcut(shortcut)
+        btn.triggered.connect(action)
+        return btn
 
     def open_selected(self):
         """Opens the selected file"""
