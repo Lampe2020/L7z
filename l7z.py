@@ -58,13 +58,48 @@ class L7z_GUI(QMainWindow):
         # menu it's currently working on.
         if True:    # 'file'
             menus['file'].addActions((
-                self.__gen_QAction(_('&Open'), self.open_selected, self.open_selected.__doc__, _('Enter')),
-                self.__gen_QAction(_('Open &Inside'), self.open_selected_inside, self.open_selected_inside.__doc__, _('Ctrl+PgDn')),
-                self.__gen_QAction(_('Open Inside *'), self.open_selected_star, self.open_selected_star.__doc__, None),
-                self.__gen_QAction(_('Open Inside #'), self.open_selected_hashtag, self.open_selected_hashtag.__doc__, None),
-                self.__gen_QAction(_('Open O&utside'), self.open_selected_outside, self.open_selected_outside.__doc__, _('Shift+Enter')),
-                self.__gen_QAction(_('&View'), self.view_selected, self.view_selected.__doc__, _('F3')),
-                self.__gen_QAction(_('&Edit'), self.edit_selected, self.edit_selected.__doc__, _('F4'))
+                self.__gen_QAction(
+                    _('&Open'),
+                    self.open_selected,
+                    self.open_selected.__doc__,
+                    _('Enter')
+                ),
+                self.__gen_QAction(
+                    _('Open &Inside'),
+                    self.open_selected_inside,
+                    self.open_selected_inside.__doc__,
+                    _('Ctrl+PgDn')
+                ),
+                self.__gen_QAction(
+                    _('Open Inside *'),
+                    self.open_selected_star,
+                    self.open_selected_star.__doc__,
+                    None
+                ),
+                self.__gen_QAction(
+                    _('Open Inside #'),
+                    self.open_selected_hashtag,
+                    self.open_selected_hashtag.__doc__,
+                    None
+                ),
+                self.__gen_QAction(
+                    _('Open O&utside'),
+                    self.open_selected_outside,
+                    self.open_selected_outside.__doc__,
+                    _('Shift+Enter')
+                ),
+                self.__gen_QAction(
+                    _('&View'),
+                    self.view_selected,
+                    self.view_selected.__doc__,
+                    _('F3')
+                ),
+                self.__gen_QAction(
+                    _('&Edit'),
+                    self.edit_selected,
+                    self.edit_selected.__doc__,
+                    _('F4')
+                )
             ))
             menus['file'].addSeparator()
             ... #TODO: Implement this!
