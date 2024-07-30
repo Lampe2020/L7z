@@ -22,7 +22,7 @@ lang_de = gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=['de'])
 lang_sv = gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=['sv'])
 #lang_ln = gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=['ln'])     # Custom language here, replace ln
 
-match conf.get('lang'):
+match conf.get('L7z', 'lang'):
     case 'en':
         lang_en.install()
     case 'de':
@@ -39,13 +39,13 @@ match conf.get('lang'):
                 lang=repr(language),
                 sys_lang=repr(sys_lang)
             ), file=sys.stderr)
-            conf.set('lang', sys_lang)
+            conf.set('L7z', 'lang', sys_lang)
         except:
             lang_en.install()
             print(
                 f"Unsupported lang in conf and unsupported system lang ({(lang, sys_lang)=}, reverting to 'en'",
                 file=sys.stderr
             )
-            conf.set('lang', value='en')
+            conf.set('L7z', 'lang', value='en')
 
 __all__ = list(obj for obj in locals() if obj.startswith('lang_'))
