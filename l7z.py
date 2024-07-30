@@ -101,7 +101,7 @@ class L7z_GUI(QMainWindow):
             ))
             menus['file'].addSeparator()
             ... #TODO: Implement this!
-            self.menubar.addMenu(menus['file']) # FIXME: Menu doesn't open when activated!
+            self.menubar.addMenu(menus['file'])
         ... #TODO: Implement this!
 
         ##########################
@@ -116,8 +116,7 @@ class L7z_GUI(QMainWindow):
 
     def __gen_QAction(self, label:str, action:Callable, tooltip:str=None, shortcut:str=None) -> QAction:
         """Generates a button with the given properties"""
-        btn:QAction = QAction(label)
-        btn.setStatusTip(tooltip)
+        btn:QAction = QAction(label, self)
         if tooltip:
             btn.setStatusTip(tooltip)
         if shortcut:
