@@ -22,6 +22,7 @@ INSTALL_DIR:str = os.path.dirname(__file__)
 
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMenuBar, QMenu, QDialog
 from PyQt6.QtGui import QIcon, QAction
+from PyQt6.QtCore import Qt
 
 l7z_app:QApplication = QApplication(sys.argv)
 
@@ -33,8 +34,12 @@ class L7z_GUI(QMainWindow):
         super().__init__()
         self.setWindowTitle(_('7-zip • Unofficial GUI (WIP!)'))
         try:
-            self.setGeometry(*(int(d) for d in conf.get('window_dimensions', 'L7z', '0,0,800,600').split(',')))
+            self.setGeometry(*(int(d) for d in conf.get('dimensions', 'Window', '0,0,800,600').split(',')))
+            if conf.getbool('maximized', 'Window', False):
+                self.setWindowState(Qt.WindowState.WindowMaximized)
         except:
+            conf.set('dimensions', 'Window', '0,0,800,600')
+            conf.set('maximized', 'Window', 'false')
             self.setGeometry(0, 0, 800, 600)
         self.setWindowIcon(QIcon(os.path.join(INSTALL_DIR, 'icons', '7-zip.png')))
         self.menubar:QMenuBar = self.menuBar()
@@ -489,8 +494,12 @@ class L7z_GUI(QMainWindow):
         """Quit the app smoothly."""
         if self.ask_quit:
             ... #TODO: Implement a "Close?" dialog
-        # Save the window position
-        conf.set('window_dimensions', 'L7z', f'{self.x()},{self.y()},{self.width()},{self.height()}')
+        # Save the window state
+        if (self.windowState() & Qt.WindowState.WindowMaximized):
+            conf.set('maximized', 'Window', 'true')
+        else:
+            conf.set('dimensions', 'Window', f'{self.x()},{self.y()},{self.width()},{self.height()}')
+            conf.set('maximized', 'Window', 'false')
         self.destroy(True, True)
         return sys.exit(0)
 

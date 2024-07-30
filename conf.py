@@ -89,16 +89,18 @@ def getfloat(conf_name:str, section:str='L7z', fallback:float=0) -> float:
 
 __all__ = ['get', 'set', 'getbool', 'getint', 'getfloat']
 
-if __name__ == '__main__':
-    """Create a new config or repair the existing one"""
-
-    ... #TODO: Implement this
-    if not 'L7z' in config.sections():
-        config['L7z'] = {
-            'lang': get_sys_lang()[:2], # For example 'sv_SE.UTF-8' → 'sv'
-            'native_menubar': 'off',
-            'window_dimensions': '0,0,800,600'
-        }
-        os.makedirs(os.path.dirname(configpath), exist_ok=True) # Create the config directory if it doesn't already exist
-        with open(configpath, 'w') as conf_file:
-            config.write(conf_file)
+# Create a new config file or repair the existing one
+... #TODO: Implement this
+if not 'L7z' in config.sections():
+    config['L7z'] = {
+        'lang': get_sys_lang()[:2]  # For example 'sv_SE.UTF-8' → 'sv'
+    }
+if not 'Window' in config.sections():
+    config['Window'] = {
+        'native_menubar': 'off',
+        'dimensions': '0,0,800,600',
+        'maximized': 'false'
+    }
+    os.makedirs(os.path.dirname(configpath), exist_ok=True) # Create the config directory if it doesn't already exist
+    with open(configpath, 'w') as conf_file:
+        config.write(conf_file)
