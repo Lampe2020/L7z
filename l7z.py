@@ -302,17 +302,20 @@ class L7z_GUI(QMainWindow):
             self.menubar.addMenu(menus['edit'])
 
         if True:    # 'view'
+            ... #TODO: Implement this menu!
             self.menubar.addMenu(menus['view'])
 
         if True:    # 'favorites'
+            ... #TODO: Implement this menu!
             self.menubar.addMenu(menus['favorites'])
 
         if True:    # 'tools'
+            ... #TODO: Implement this menu!
             self.menubar.addMenu(menus['tools'])
 
         if True:    # 'help'
+            ... #TODO: Implement this menu!
             self.menubar.addMenu(menus['help'])
-        ... #TODO: Implement this!
 
         ##########################
         # Initialize the toolbar #
