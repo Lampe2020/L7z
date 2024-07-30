@@ -242,6 +242,24 @@ class L7z_GUI(QMainWindow):
                 ),
             ))
             self.menubar.addMenu(menus['file'])
+
+        if True:    # 'edit'
+            menus['edit'].addActions((
+
+            ))
+            self.menubar.addMenu(menus['edit'])
+
+        if True:    # 'view'
+            self.menubar.addMenu(menus['view'])
+
+        if True:    # 'favorites'
+            self.menubar.addMenu(menus['favorites'])
+
+        if True:    # 'tools'
+            self.menubar.addMenu(menus['tools'])
+
+        if True:    # 'help'
+            self.menubar.addMenu(menus['help'])
         ... #TODO: Implement this!
 
         ##########################
