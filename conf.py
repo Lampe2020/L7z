@@ -16,36 +16,21 @@ except configparser.ParsingError:
         conf_file.write('')
 
 def get_sys_lang() -> str:
-    """
-    Retrieves the default language.
-    :return:
-    """
+    """Retrieves the default language."""
     try:
         return os.environ['LANG']
     except OSError:
         return 'en'
 
 def get(section:str, key:str, fallback:str='') -> str:
-    """
-    Retrieve a config value
-    :param section:
-    :param key:
-    :param fallback:
-    :return:
-    """
+    """Retrieve a config value"""
     try:
         return config[section][key]
     except:
         return fallback
 
 def set(section:str, key:str, value:any='') -> bool:
-    """
-    Change a config value
-    :param section:
-    :param key:
-    :param value:
-    :return:
-    """
+    """Change a config value"""
     try:
         config[section][key] = value
         with open(configpath, 'w') as conf_file:
@@ -55,45 +40,25 @@ def set(section:str, key:str, value:any='') -> bool:
         return False
 
 def getbool(section:str, key:str, fallback:bool=False) -> bool:
-    """
-    Retrieve a config value as a boolean
-    :param section:
-    :param key:
-    :param fallback:
-    :return:
-    """
+    """Retrieve a config value as a boolean"""
     try:
         return config.getboolean(section, key)
     except:
         return fallback
 
 def getint(section:str, key:str, fallback:int=0) -> int:
-    """
-    Retrieve a config value as an int
-    :param section:
-    :param key:
-    :param fallback:
-    :return:
-    """
+    """Retrieve a config value as an int"""
     try:
         return config.getint(section, key)
     except:
         return fallback
 
 def getfloat(section:str, key:str, fallback:float=0) -> float:
-    """
-    Retrieve a config value as a float
-    :param section:
-    :param key:
-    :param fallback:
-    :return:
-    """
+    """Retrieve a config value as a float"""
     try:
         return config.getfloat(section, key)
     except:
         return fallback
-
-__all__ = ['get', 'set', 'getbool', 'getint', 'getfloat']
 
 # Create a new config file or repair the existing one
 type_formats:dict[str, re.Pattern] = {
@@ -102,8 +67,6 @@ type_formats:dict[str, re.Pattern] = {
     # Boolean format described in https://docs.python.org/3/library/configparser.html#supported-datatypes
     'bool': re.compile(r'(true)|(false)|(on)|(off)|(yes)|(no)|1|0', re.IGNORECASE)
 }
-
-
 
 def restore():
     """Restores the config into a usable state"""
@@ -143,3 +106,5 @@ def reset():
     restore()
 
 restore()
+
+__all__ = ['get', 'set', 'getbool', 'getint', 'getfloat', 'restore', 'reset']
