@@ -76,7 +76,7 @@ def getint(conf_name:str, section:str='L7z', fallback:int=0) -> int:
 
 def getfloat(conf_name:str, section:str='L7z', fallback:float=0) -> float:
     """
-    Retrieve a confi value as a float
+    Retrieve a config value as a float
     :param conf_name:
     :param section:
     :param fallback:
