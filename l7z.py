@@ -488,6 +488,13 @@ class L7z_GUI(QMainWindow):
         self.destroy(True, True)
         return sys.exit(0)
 
+    def closeEvent(self, event):
+        """Quit the app smoothly on external close command"""
+        if self.quit():
+            event.accept()
+        else:
+            event.ignore()
+
 #debug
 print(_('Starting L7z on {platform}…').format(platform=sys.platform))
 
