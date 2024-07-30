@@ -128,8 +128,8 @@ def restore():
         return config[section][key]
     repair_value('L7z', 'lang', get_sys_lang()[:2], r'^[a-z]{2}$')
     repair_value('Window', 'native_menubar', 'off', bool)
-    repair_value('Window', 'dimensions', '0,0,800,600', f'{type_formats["int"].pattern},{type_formats["int"].pattern},'
-                                                        f'{type_formats["int"].pattern},{type_formats["int"].pattern}')
+    repair_value('Window', 'dimensions', '0,0,800,600', f'^{type_formats["int"].pattern},{type_formats["int"].pattern},'
+                                                        f'{type_formats["int"].pattern},{type_formats["int"].pattern}$')
     repair_value('Window', 'maximized', 'false', bool)
     os.makedirs(os.path.dirname(configpath), exist_ok=True) # Create the config directory if it doesn't already exist
     with open(configpath, 'w') as conf_file:
