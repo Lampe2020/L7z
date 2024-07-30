@@ -374,7 +374,20 @@ class L7z_GUI(QMainWindow):
 
     def show_checksum(self, checksum_type):
         """Show the selected file's checksum of the specified type"""
-        ... #TODO: Implement this!
+        selected_checksums:dict[str, bytes] = {}
+        if checksum_type in ('CRC-32', '*'):
+            selected_checksums['CRC-32'] = b''      #TODO: Implement this hash!
+        if checksum_type in ('CRC-64', '*'):
+            selected_checksums['CRC-64'] = b''      #TODO: Implement this hash!
+        if checksum_type in ('XXH64', '*'):
+            selected_checksums['XXH64'] = b''       #TODO: Implement this hash!
+        if checksum_type in ('SHA-1', '*'):
+            selected_checksums['SHA-1'] = b''       #TODO: Implement this hash!
+        if checksum_type in ('SHA-256', '*'):
+            selected_checksums['SHA-256'] = b''     #TODO: Implement this hash!
+        if checksum_type in ('BLAKE2sp', '*'):
+            selected_checksums['BLAKE2sp'] = b''    #TODO: Implement this hash!
+        ... #TODO: Implement this dialog!
 
     def new_folder(self):
         """Create a new folder inside the current one"""
