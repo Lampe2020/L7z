@@ -38,8 +38,7 @@ class L7z_GUI(QMainWindow):
             if conf.getbool('Window', 'maximized', False):
                 self.setWindowState(Qt.WindowState.WindowMaximized)
         except:
-            conf.set('Window', 'dimensions', '0,0,800,600')
-            conf.set('Window', 'maximized', 'false')
+            conf.restore()  # Restore the config to a usable state
             self.setGeometry(0, 0, 800, 600)
         self.setWindowIcon(QIcon(os.path.join(INSTALL_DIR, 'icons', '7-zip.png')))
         self.menubar:QMenuBar = self.menuBar()
