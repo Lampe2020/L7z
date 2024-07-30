@@ -21,7 +21,9 @@ to get your fix merged into the main project. If you do so, please follow the ab
 You are welcome to help with translation. Note that words enclosed in curly braces _MUST NOT_ be translated, as those 
 are treated as variables and will stop L7z from functioning properly if they are translated!   
 To get going with translating, run `gen-pot.sh` located in the project root and then use the generated `template.pot` 
-located in the `locales` directory in the project root.
+located in the `locales` directory in the project root.   
+When you encounter an ellipsis in a string, translate it as the ellipsis character (U+2026) if it is such in the 
+original.
 
 
 
