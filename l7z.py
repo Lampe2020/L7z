@@ -245,7 +245,51 @@ class L7z_GUI(QMainWindow):
 
         if True:    # 'edit'
             menus['edit'].addActions((
-
+                self.__gen_QAction(
+                    _('Select &All'),
+                    self.select_all,
+                    self.select_all.__doc__,
+                    _('Shift+[NumPad+]')
+                ),
+                self.__gen_QAction(
+                    _('Deselect All'),
+                    self.deselect_all,
+                    self.deselect_all.__doc__,
+                    _('Shift+[NumPad-]')
+                ),
+                self.__gen_QAction(
+                    _('&Invert selection'),
+                    self.select_all,
+                    self.select_all.__doc__,
+                    _('[NumPad*]')
+                ),
+                self.__gen_QAction(
+                    _('Select…'),
+                    self.select_all,
+                    self.select_all.__doc__,
+                    _('[NumPad+]')
+                ),
+                self.__gen_QAction(
+                    _('Deselect…'),
+                    self.select_all,
+                    self.select_all.__doc__,
+                    _('[NumPad-]')
+                )
+            ))
+            menus['edit'].addSeparator()
+            menus['edit'].addActions((
+                self.__gen_QAction(
+                    _('Select by Type'),
+                    self.select_all,
+                    self.select_all.__doc__,
+                    _('Alt+[NumPad+]')
+                ),
+                self.__gen_QAction(
+                    _('Deselect by Type'),
+                    self.deselect_all,
+                    self.deselect_all.__doc__,
+                    _('Alt+[NumPad-]')
+                )
             ))
             self.menubar.addMenu(menus['edit'])
 
@@ -403,6 +447,34 @@ class L7z_GUI(QMainWindow):
 
     def show_alt_streams(self):
         """Show the selected file's alternate streams"""
+        ... #TODO: Implement this!
+
+    def select_all(self):
+        """Select all files in the current file view"""
+        ... #TODO: Implement this!
+
+    def deselect_all(self):
+        """Deselect all files in the current file view"""
+        ... #TODO: Implement this!
+
+    def invert_selection(self):
+        """Invert the selection of files in the current file view"""
+        ... #TODO: Implement this!
+
+    def select_pattern(self):
+        """Select files in the current file view according to a given pattern"""
+        ... #TODO: Implement this!
+
+    def deselect_pattern(self):
+        """Deselect files in the current file view according to a given pattern"""
+        ... #TODO: Implement this!
+
+    def select_type(self):
+        """Select files in the current file view according to their type"""
+        ... #TODO: Implement this!
+
+    def deselect_type(self):
+        """Deselect files in the current file view according to their type"""
         ... #TODO: Implement this!
 
     def show_about(self):
