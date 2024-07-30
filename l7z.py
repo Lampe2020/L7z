@@ -52,7 +52,7 @@ class L7z_GUI(QMainWindow):
             'tools': QMenu(_('&Tools'), self),
             'help': QMenu(_('&Help'), self)
         }
-        # In the following there are a few `if True` blocks, there are just for structuring the code according to the
+        # In the following there are a few `if True` blocks, they are just for structuring the code according to the
         # menu it's currently working on.
         if True:    # 'file'
             menus['file'].addActions((
@@ -100,7 +100,147 @@ class L7z_GUI(QMainWindow):
                 )
             ))
             menus['file'].addSeparator()
-            ... #TODO: Implement this!
+            menus['file'].addActions((
+                self.__gen_QAction(
+                    _('Rena&me'),
+                    self.rename_file,
+                    self.rename_file.__doc__,
+                    _('F2')
+                ),
+                self.__gen_QAction(
+                    _('&Copy to…'),
+                    self.rename_file,
+                    self.rename_file.__doc__,
+                    _('F5')
+                ),
+                self.__gen_QAction(
+                    _('&Move to…'),
+                    self.rename_file,
+                    self.rename_file.__doc__,
+                    _('F6')
+                ),
+                self.__gen_QAction(
+                    _('&Delete'),
+                    self.rename_file,
+                    self.rename_file.__doc__,
+                    _('Del')
+                )
+            ))
+            menus['file'].addSeparator()
+            menus['file'].addActions((
+                self.__gen_QAction(
+                    _('&Split file…'),
+                    self.split_file,
+                    self.split_file.__doc__,
+                    None
+                ),
+                self.__gen_QAction(
+                    _('Com&bine files…'),
+                    self.combine_files,
+                    self.combine_files.__doc__,
+                    None
+                )
+            ))
+            menus['file'].addSeparator()
+            menus['file'].addActions((
+                self.__gen_QAction(
+                    _('P&roperties'),
+                    self.show_props,
+                    self.show_props.__doc__,
+                    _('Alt+Enter')
+                ),
+                self.__gen_QAction(
+                    _('Comme&nt…'),
+                    self.comment,
+                    self.comment.__doc__,
+                    _('Ctrl+Z')
+                )
+            ))
+            menus['file'].addMenu(menus['file/CRC'])
+            if True:    # 'file/CRC'
+                menus['file/CRC'].addActions((
+                    self.__gen_QAction(
+                        _('CRC-32'),
+                        self.show_crc32_checksum,
+                        self.show_crc32_checksum.__doc__,
+                        None
+                    ),
+                    self.__gen_QAction(
+                        _('CRC-64'),
+                        self.show_crc64_checksum,
+                        self.show_crc64_checksum.__doc__,
+                        None
+                    ),
+                    self.__gen_QAction(
+                        _('XXH64'),
+                        self.show_xxh64_checksum,
+                        self.show_xxh64_checksum.__doc__,
+                        None
+                    ),
+                    self.__gen_QAction(
+                        _('SHA-1'),
+                        self.show_sha1_checksum,
+                        self.show_sha1_checksum.__doc__,
+                        None
+                    ),
+                    self.__gen_QAction(
+                        _('SHA-256'),
+                        self.show_sha256_checksum,
+                        self.show_sha256_checksum.__doc__,
+                        None
+                    ),
+                    self.__gen_QAction(
+                        _('BLAKE2sp'),
+                        self.show_blake2sp_checksum,
+                        self.show_blake2sp_checksum.__doc__,
+                        None
+                    ),
+                    self.__gen_QAction(
+                        _('*'),
+                        self.show_all_checksums,
+                        self.show_all_checksums.__doc__,
+                        None
+                    )
+                ))
+            menus['file'].addSeparator()
+            menus['file'].addActions((
+                self.__gen_QAction(
+                    _('Create folder'),
+                    self.new_folder,
+                    self.new_folder.__doc__,
+                    _('F7')
+                ),
+                self.__gen_QAction(
+                    _('Create file'),
+                    self.new_file,
+                    self.new_file.__doc__,
+                    _('Ctrl+N')
+                )
+            ))
+            menus['file'].addSeparator()
+            menus['file'].addActions((
+                self.__gen_QAction(
+                    _('&Link…'),
+                    self.link,
+                    self.link.__doc__,
+                    None
+                ),
+                self.__gen_QAction(
+                    _('&Alternate streams'),
+                    self.show_alt_streams,
+                    self.show_alt_streams.__doc__,
+                    None
+                )
+            ))
+            menus['file'].addSeparator()
+            menus['file'].addActions((
+                self.__gen_QAction(
+                    _('E&xit'),
+                    self.quit,
+                    self.quit.__doc__,
+                    _('Alt+F4')
+                ),
+            ))
             self.menubar.addMenu(menus['file'])
         ... #TODO: Implement this!
 
@@ -132,13 +272,14 @@ class L7z_GUI(QMainWindow):
         """Opens the selected file in 7-zip"""
         ... #TODO: Implement this!
 
-
     def open_selected_star(self):
         """Opens the selected file TODO: Find out meaning of star!"""
         ... #TODO: Implement this!
+
     def open_selected_hashtag(self):
         """Opens the selected file TODO: Find out meaning of hashtag!"""
         ... #TODO: Implement this!
+
     def open_selected_outside(self):
         """Opens the selected file in an external program"""
         ... #TODO: Implement this!
@@ -149,6 +290,88 @@ class L7z_GUI(QMainWindow):
 
     def edit_selected(self):
         """Edit the selected file"""
+        ... #TODO: Implement this!
+
+    def rename_file(self):
+        """Rename the selected file"""
+        ... #TODO: Implement this!
+
+    def copy_to(self):
+        """Copy the selected files to another location"""
+        ... #TODO: Implement this!
+
+    def move_to(self):
+        """Move the selected files to another location"""
+        self.copy_to()
+        self.delete_file()
+        #TODO: Make sure this is how it should be implemented!
+
+    def delete_file(self):
+        """Delete the selected files"""
+        ... #TODO: Implement this!
+
+    def split_file(self):
+        """Split a file into several ones"""
+        ... #TODO: Implement this!
+
+    def combine_files(self):
+        """Combine the parts of a split file back together to one"""
+        ... #TODO: Implement this!
+
+    def show_props(self):
+        """Show the properties of the selected file"""
+        ... #TODO: Implement this!
+
+    def comment(self):
+        """Comment on a file"""
+        ... #TODO: Implement this!
+
+    def show_crc32_checksum(self):
+        """Show the selected file's CRC-32 checksum"""
+        return self.show_checksum('CRC-32')
+
+    def show_crc64_checksum(self):
+        """Show the selected file's CRC-64 checksum"""
+        return self.show_checksum('CRC-64')
+
+    def show_xxh64_checksum(self):
+        """Show the selected file's XXH64 checksum"""
+        return self.show_checksum('XXH64')
+
+    def show_sha1_checksum(self):
+        """Show the selected file's SHA-1 checksum"""
+        return self.show_checksum('SHA-1')
+
+    def show_sha256_checksum(self):
+        """Show the selected file's SHA-256 checksum"""
+        return self.show_checksum('SHA-256')
+
+    def show_blake2sp_checksum(self):
+        """Show the selected file's BLAKE2sp checksum"""
+        return self.show_checksum('BLAKE2sp')
+
+    def show_all_checksums(self):
+        """Show all available checksums of the selected file"""
+        return self.show_checksum('*')
+
+    def show_checksum(self, checksum_type):
+        """Show the selected file's checksum of the specified type"""
+        ... #TODO: Implement this!
+
+    def new_folder(self):
+        """Create a new folder inside the current one"""
+        ... #TODO: Implement this!
+
+    def new_file(self):
+        """Create a new file inside the current directory"""
+        ... #TODO: Implement this!
+
+    def link(self):
+        """Create a link"""
+        ... #TODO: Implement this!
+
+    def show_alt_streams(self):
+        """Show the selected file's alternate streams"""
         ... #TODO: Implement this!
 
     def show_about(self):
