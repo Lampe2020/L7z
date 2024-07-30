@@ -18,9 +18,9 @@ LOCALE_DIR:str = os.path.join(os.path.dirname(__file__), 'locales')
 gettext.install(APP_NAME, LOCALE_DIR)
 
 lang_en = gettext.translation(APP_NAME, languages=['en'], fallback=True)
-print(gettext.find(domain=APP_NAME, localedir=LOCALE_DIR, languages=['de']))
 lang_de = gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=['de'])
 lang_sv = gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=['sv'])
+#lang_ln = gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=['ln'])     # Custom language here, replace ln
 
 match conf.get('lang'):
     case 'en':
@@ -29,6 +29,8 @@ match conf.get('lang'):
         lang_de.install()
     case 'sv':
         lang_sv.install()
+    # case 'ln':             # Custom language here, replace 'ln'
+    #     lang_ln.install()  # with the language code of your language
     case language:
         sys_lang:str = conf.get_sys_lang()[:2]
         try:
