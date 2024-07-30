@@ -32,6 +32,10 @@ class L7z_GUI(QMainWindow):
         """Initialize the main GUI"""
         super().__init__()
         self.setWindowTitle(_('7-zip • Unofficial GUI (WIP!)'))
+        try:
+            self.setGeometry(*(int(d) for d in conf.get('window_dimensions', 'L7z', '0,0,800,600').split(',')))
+        except:
+            self.setGeometry(0, 0, 800, 600)
         self.setWindowIcon(QIcon(os.path.join(INSTALL_DIR, 'icons', '7-zip.png')))
         self.menubar:QMenuBar = self.menuBar()
         self.menubar.setNativeMenuBar(conf.getbool('native_menubar'))
@@ -485,6 +489,8 @@ class L7z_GUI(QMainWindow):
         """Quit the app smoothly."""
         if self.ask_quit:
             ... #TODO: Implement a "Close?" dialog
+        # Save the window position
+        conf.set('window_dimensions', 'L7z', f'{self.x()},{self.y()},{self.width()},{self.height()}')
         self.destroy(True, True)
         return sys.exit(0)
 

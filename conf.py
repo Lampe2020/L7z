@@ -96,7 +96,8 @@ if __name__ == '__main__':
     if not 'L7z' in config.sections():
         config['L7z'] = {
             'lang': get_sys_lang()[:2], # For example 'sv_SE.UTF-8' → 'sv'
-            'native_menubar': 'off'
+            'native_menubar': 'off',
+            'window_dimensions': '0,0,800,600'
         }
         os.makedirs(os.path.dirname(configpath), exist_ok=True) # Create the config directory if it doesn't already exist
         with open(configpath, 'w') as conf_file:
