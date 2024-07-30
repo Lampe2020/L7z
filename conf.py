@@ -63,7 +63,7 @@ def getbool(conf_name:str, section:str='L7z', fallback:bool=False) -> bool:
 
 def getint(conf_name:str, section:str='L7z', fallback:int=0) -> int:
     """
-    Retrieve a confi value as an int
+    Retrieve a config value as an int
     :param conf_name:
     :param section:
     :param fallback:
