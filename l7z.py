@@ -34,16 +34,16 @@ class L7z_GUI(QMainWindow):
         super().__init__()
         self.setWindowTitle(_('7-zip • Unofficial GUI (WIP!)'))
         try:
-            self.setGeometry(*(int(d) for d in conf.get('dimensions', 'Window', '0,0,800,600').split(',')))
-            if conf.getbool('maximized', 'Window', False):
+            self.setGeometry(*(int(d) for d in conf.get('Window', 'dimensions', '0,0,800,600').split(',')))
+            if conf.getbool('Window', 'maximized', False):
                 self.setWindowState(Qt.WindowState.WindowMaximized)
         except:
-            conf.set('dimensions', 'Window', '0,0,800,600')
-            conf.set('maximized', 'Window', 'false')
+            conf.set('Window', 'dimensions', '0,0,800,600')
+            conf.set('Window', 'maximized', 'false')
             self.setGeometry(0, 0, 800, 600)
         self.setWindowIcon(QIcon(os.path.join(INSTALL_DIR, 'icons', '7-zip.png')))
         self.menubar:QMenuBar = self.menuBar()
-        self.menubar.setNativeMenuBar(conf.getbool('native_menubar'))
+        self.menubar.setNativeMenuBar(conf.getbool('L7z', 'native_menubar'))
 
         ###########################
         # Initialize the menu bar #
@@ -496,10 +496,10 @@ class L7z_GUI(QMainWindow):
             ... #TODO: Implement a "Close?" dialog
         # Save the window state
         if (self.windowState() & Qt.WindowState.WindowMaximized):
-            conf.set('maximized', 'Window', 'true')
+            conf.set('Window', 'maximized', 'true')
         else:
-            conf.set('dimensions', 'Window', f'{self.x()},{self.y()},{self.width()},{self.height()}')
-            conf.set('maximized', 'Window', 'false')
+            conf.set('Window', 'dimensions', f'{self.x()},{self.y()},{self.width()},{self.height()}')
+            conf.set('Window', 'maximized', 'false')
         self.destroy(True, True)
         return sys.exit(0)
 
