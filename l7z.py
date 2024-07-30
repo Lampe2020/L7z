@@ -41,19 +41,17 @@ class L7z_GUI(QMainWindow):
         ###########################
         menus:dict[str, QMenu] = {
             'file': QMenu(_('&File'), self),
+            'file/CRC': QMenu(_('CRC'), self),
             'edit': QMenu(_('&Edit'), self),
             'view': QMenu(_('&View'), self),
+                                   # ↓ is updated whenever the menu is opened, so doesn't need to be translated
+            'view/timeformat': QMenu(datetime.datetime.now().strftime('%Y-%m-%d'), self),
+            'view/toolbars': QMenu(_('Toolbars'), self),
             'favorites': QMenu(_('F&avorites'), self),
+            'favorites/add': QMenu(_('&Add folder to favorites as'), self),
             'tools': QMenu(_('&Tools'), self),
             'help': QMenu(_('&Help'), self)
         }
-        menus.update({**menus,
-            'file/CRC': QMenu(_('CRC'), menus['file']),
-                                    # ↓ is updated whenever the menu is opened, so doesn't need to be translated
-            'view/timeformat': QMenu(datetime.datetime.now().strftime('%Y-%m-%d'), menus['view']),
-            'view/toolbars': QMenu(_('Toolbars'), menus['view']),
-            'favorites/add': QMenu(_('&Add folder to favorites as'), menus['favorites'])
-        })
         # In the following there are a few `if True` blocks, there are just for structuring the code according to the
         # menu it's currently working on.
         if True:    # 'file'
@@ -120,6 +118,8 @@ class L7z_GUI(QMainWindow):
         """Generates a button with the given properties"""
         btn:QAction = QAction(label)
         btn.setStatusTip(tooltip)
+        if tooltip:
+            btn.setStatusTip(tooltip)
         if shortcut:
             btn.setShortcut(shortcut)
         btn.triggered.connect(action)
