@@ -67,13 +67,13 @@ class L7z_GUI(QMainWindow):
                     _('&Open'),
                     self.open_selected,
                     self.open_selected.__doc__,
-                    _('Enter')
+                    'Enter'
                 ),
                 self.__gen_QAction(
                     _('Open &Inside'),
                     self.open_selected_inside,
                     self.open_selected_inside.__doc__,
-                    _('Ctrl+PgDn')
+                    'Ctrl+PgDn'
                 ),
                 self.__gen_QAction(
                     _('Open Inside *'),
@@ -91,19 +91,19 @@ class L7z_GUI(QMainWindow):
                     _('Open O&utside'),
                     self.open_selected_outside,
                     self.open_selected_outside.__doc__,
-                    _('Shift+Enter')
+                    'Shift+Enter'
                 ),
                 self.__gen_QAction(
                     _('&View'),
                     self.view_selected,
                     self.view_selected.__doc__,
-                    _('F3')
+                    'F3'
                 ),
                 self.__gen_QAction(
                     _('&Edit'),
                     self.edit_selected,
                     self.edit_selected.__doc__,
-                    _('F4')
+                    'F4'
                 )
             ))
             menus['file'].addSeparator()
@@ -112,25 +112,25 @@ class L7z_GUI(QMainWindow):
                     _('Rena&me'),
                     self.rename_file,
                     self.rename_file.__doc__,
-                    _('F2')
+                    'F2'
                 ),
                 self.__gen_QAction(
                     _('&Copy to…'),
                     self.rename_file,
                     self.rename_file.__doc__,
-                    _('F5')
+                    'F5'
                 ),
                 self.__gen_QAction(
                     _('&Move to…'),
                     self.rename_file,
                     self.rename_file.__doc__,
-                    _('F6')
+                    'F6'
                 ),
                 self.__gen_QAction(
                     _('&Delete'),
                     self.rename_file,
                     self.rename_file.__doc__,
-                    _('Del')
+                    'Del'
                 )
             ))
             menus['file'].addSeparator()
@@ -154,13 +154,13 @@ class L7z_GUI(QMainWindow):
                     _('P&roperties'),
                     self.show_props,
                     self.show_props.__doc__,
-                    _('Alt+Enter')
+                    'Alt+Enter'
                 ),
                 self.__gen_QAction(
                     _('Comme&nt…'),
                     self.comment,
                     self.comment.__doc__,
-                    _('Ctrl+Z')
+                    'Ctrl+Z'
                 )
             ))
             menus['file'].addMenu(menus['file/CRC'])
@@ -215,13 +215,13 @@ class L7z_GUI(QMainWindow):
                     _('Create folder'),
                     self.new_folder,
                     self.new_folder.__doc__,
-                    _('F7')
+                    'F7'
                 ),
                 self.__gen_QAction(
                     _('Create file'),
                     self.new_file,
                     self.new_file.__doc__,
-                    _('Ctrl+N')
+                    'Ctrl+N'
                 )
             ))
             menus['file'].addSeparator()
@@ -245,7 +245,7 @@ class L7z_GUI(QMainWindow):
                     _('E&xit'),
                     self.quit,
                     self.quit.__doc__,
-                    _('Alt+F4')
+                    'Alt+F4'
                 ),
             ))
             self.menubar.addMenu(menus['file'])
@@ -256,31 +256,31 @@ class L7z_GUI(QMainWindow):
                     _('Select &All'),
                     self.select_all,
                     self.select_all.__doc__,
-                    _('Shift+[NumPad+]')
+                    'Shift++'   # 'Shift+[NumPad+]'
                 ),
                 self.__gen_QAction(
                     _('Deselect All'),
                     self.deselect_all,
                     self.deselect_all.__doc__,
-                    _('Shift+[NumPad-]')
+                    'Shift+-'   # 'Shift+[NumPad-]'
                 ),
                 self.__gen_QAction(
                     _('&Invert selection'),
                     self.select_all,
                     self.select_all.__doc__,
-                    _('[NumPad*]')
+                    '*'         # '[NumPad*]'
                 ),
                 self.__gen_QAction(
                     _('Select…'),
                     self.select_all,
                     self.select_all.__doc__,
-                    _('[NumPad+]')
+                    '+'         # '[NumPad+]'
                 ),
                 self.__gen_QAction(
                     _('Deselect…'),
                     self.select_all,
                     self.select_all.__doc__,
-                    _('[NumPad-]')
+                    '-'         # '[NumPad-]'
                 )
             ))
             menus['edit'].addSeparator()
@@ -289,13 +289,13 @@ class L7z_GUI(QMainWindow):
                     _('Select by Type'),
                     self.select_all,
                     self.select_all.__doc__,
-                    _('Alt+[NumPad+]')
+                    'Alt++'     # 'Alt+[NumPad+]'
                 ),
                 self.__gen_QAction(
                     _('Deselect by Type'),
                     self.deselect_all,
                     self.deselect_all.__doc__,
-                    _('Alt+[NumPad-]')
+                    'Alt+-'     # 'Alt+[NumPad-]'
                 )
             ))
             self.menubar.addMenu(menus['edit'])
