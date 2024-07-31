@@ -102,7 +102,9 @@ def reset():
     """Resets the config to the default"""
     with open(configpath, 'w') as conf_file:
         conf_file.write('')     # Delete all contents of the current config file
-        config.read(configpath) # Empty out the in-memory config
+        conf_file.flush()
+        for section in config.sections():
+            config.remove_section(section)
     restore()
 
 restore()   # Make sure the config is usable _before_ it gets used!
