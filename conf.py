@@ -105,6 +105,6 @@ def reset():
         config.read(configpath) # Empty out the in-memory config
     restore()
 
-restore()
+restore()   # Make sure the config is usable _before_ it gets used!
 
 __all__ = ['get', 'set', 'getbool', 'getint', 'getfloat', 'restore', 'reset']
