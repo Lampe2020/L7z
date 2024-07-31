@@ -67,15 +67,120 @@ class L7z_GUI(QMainWindow):
             'help': QMenu(_('&Help'), self)
         }
         menus.update({**menus,
-            'file/CRC': QMenu(_('CRC'), menus['file']),
+            'file/7-zip': QMenu('7-Zip', menus['file']),
+            'file/crc': QMenu(_('CRC'), menus['file']),
                                    # ↓ is updated whenever the menu is opened, so doesn't need to be translated
             'view/timeformat': QMenu(datetime.datetime.now().strftime('%Y-%m-%d'), menus['view']),
             'view/toolbars': QMenu(_('Toolbars'), menus['view']),
             'favorites/add': QMenu(_('&Add folder to favorites as'), menus['favorites'])
         })
+        menus.update({**menus,
+            'file/7-zip/crc': QMenu(_('CRC SHA'), menus['file/7-zip'])
+        })
         # In the following there are a few `if True` blocks, they are just for structuring the code according to the
         # menu it's currently working on.
         if True:    # 'file'
+            if True:    # 'file/7-zip'
+                menus['file/7-zip'].addActions((
+                    self.__gen_QAction(
+                        _('Add to archive…'),
+                        self.add_to_archive,
+                        self.add_to_archive.__doc__,
+                        None
+                    ),
+                    self.__gen_QAction(
+                        _('Compress and email…'),
+                        self.add_to_archive,
+                        self.add_to_archive.__doc__,
+                        None
+                    ),
+                    self.__gen_QAction(
+                        _('Add to "{filename}.7z"'),
+                        self.add_to_archive,
+                        self.add_to_archive.__doc__,
+                        None
+                    ),
+                    self.__gen_QAction(
+                        _('Compress to "{filename}".7z and email'),
+                        self.add_to_archive,
+                        self.add_to_archive.__doc__,
+                        None
+                    ),
+                    self.__gen_QAction(
+                        _('Add to "{filename}.zip"'),
+                        self.add_to_archive,
+                        self.add_to_archive.__doc__,
+                        None
+                    ),
+                    self.__gen_QAction(
+                        _('Compress to "{filename}.zip" and email'),
+                        self.add_to_archive,
+                        self.add_to_archive.__doc__,
+                        None
+                    )
+                ))
+                if True:    # 'file/7-zip/crc
+                    menus['file/7-zip/crc'].addActions((
+                        self.__gen_QAction(
+                            _('CRC-32'),
+                            (lambda: self.show_checksum('CRC-32')),
+                            self.show_checksum.__doc__,
+                            None
+                        ),
+                        self.__gen_QAction(
+                            _('CRC-64'),
+                            (lambda: self.show_checksum('CRC-64')),
+                            self.show_checksum.__doc__,
+                            None
+                        ),
+                        self.__gen_QAction(
+                            _('XXH64'),
+                            (lambda: self.show_checksum('XXH64')),
+                            self.show_checksum.__doc__,
+                            None
+                        ),
+                        self.__gen_QAction(
+                            _('SHA-1'),
+                            (lambda: self.show_checksum('SHA-1')),
+                            self.show_checksum.__doc__,
+                            None
+                        ),
+                        self.__gen_QAction(
+                            _('SHA-256'),
+                            (lambda: self.show_checksum('SHA-256')),
+                            self.show_checksum.__doc__,
+                            None
+                        ),
+                        self.__gen_QAction(
+                            _('BLAKE2sp'),
+                            (lambda: self.show_checksum('BLAKE2sp')),
+                            self.show_checksum.__doc__,
+                            None
+                        ),
+                        self.__gen_QAction(
+                            _('*'),
+                            (lambda: self.show_checksum('*')),
+                            self.show_checksum.__doc__,
+                            None
+                        )
+                    ))
+                    menus['file/7-zip/crc'].addSeparator()
+                    menus['file/7-zip/crc'].addActions((
+                        self.__gen_QAction(
+                            _('SHA-256 → {filename}.sha256'),
+                            self.save_sha256,
+                            self.save_sha256.__doc__,
+                            None
+                        ),
+                        self.__gen_QAction(
+                            _('Test Archive : Checksum'),
+                            self.save_sha256,
+                            self.save_sha256.__doc__,
+                            None
+                        )
+                    ))
+                    menus['file/7-zip'].addMenu(menus['file/7-zip/crc'])
+                menus['file'].addMenu(menus['file/7-zip'])
             menus['file'].addActions((
                 self.__gen_QAction(
                     _('&Open'),
@@ -177,9 +282,9 @@ class L7z_GUI(QMainWindow):
                     'Ctrl+Z'
                 )
             ))
-            menus['file'].addMenu(menus['file/CRC'])
-            if True:    # 'file/CRC'
-                menus['file/CRC'].addActions((
+            menus['file'].addMenu(menus['file/crc'])
+            if True:    # 'file/crc'
+                menus['file/crc'].addActions((
                     self.__gen_QAction(
                         _('CRC-32'),
                         (lambda: self.show_checksum('CRC-32')),
@@ -418,13 +523,19 @@ class L7z_GUI(QMainWindow):
                 timeformat_list.setExclusive(True)
                 for timeformat in self.__timeformats:
                     timeformat_list.addAction(self.__gen_QAction(
-                        f'{datetime.datetime.now().strftime(timeformat)}{"Z" if conf.getbool("L7z", "use_utc_time") else ""}',
+                        (f'{datetime.datetime.now().strftime(timeformat)}'
+                         f'{"Z" if conf.getbool("L7z", "use_utc_time") else ""}'),
                         (lambda: self.set_timeformat(timeformat)),
                         self.set_timeformat.__doc__,
                         None,
                         True
                     ))
-                timeformat_list.actions()[self.__timeformats.index(conf.get('L7z', 'timestamp_format'))].setChecked(True)
+                try:
+                    (timeformat_list.actions()[self.__timeformats.index(conf.get('L7z', 'timestamp_format'))]
+                     .setChecked(True))
+                except ValueError:
+                    print(_('Custom timestamp format detected: {timestamp_format}')
+                          .format(timestamp_format=conf.get('L7z', 'timestamp_format')))
                 menus['view/timeformat'].addActions(timeformat_list.actions())
                 menus['view/timeformat'].addAction(self.__gen_QAction(
                     _('UTC'),
@@ -559,6 +670,14 @@ class L7z_GUI(QMainWindow):
             btn.setCheckable(True)
         btn.triggered.connect(action)
         return btn
+
+    def add_to_archive(self):
+        """Add the selected file(s) to a new archive"""
+        ... #TODO: Implement this!
+
+    def save_sha256(self):
+        """Add the selected file(s) to a new archive"""
+        ... #TODO: Implement this!
 
     def open_selected(self):
         """Opens the selected file"""
