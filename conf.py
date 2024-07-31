@@ -7,7 +7,7 @@ L7z config handler
 
 import configparser, typing, os, re
 
-config:configparser.ConfigParser = configparser.ConfigParser()
+config:configparser.ConfigParser = configparser.ConfigParser(interpolation=None)
 configpath:str = os.path.expanduser('~/.config/l7z.conf')
 try:
     config.read(configpath)
@@ -89,11 +89,22 @@ def restore():
         if not re.match(expected_format, config[section][key]):
             config[section][key] = default
         return config[section][key]
-    repair_value('L7z', 'lang', get_sys_lang()[:2], r'^[a-z]{2}$')
+    repair_value('L7z', 'lang', get_sys_lang()[:2], r'^[a-z]{2}(_[A-Z]{2})?$')
+    repair_value('L7z', 'use_utc_time', 'no', bool)
+    repair_value('L7z', 'timestamp_format', '%Y-%m-%d %H:%M')
     repair_value('Window', 'native_menubar', 'off', bool)
     repair_value('Window', 'dimensions', '0,0,800,600', f'^{type_formats["int"].pattern},{type_formats["int"].pattern},'
                                                         f'{type_formats["int"].pattern},{type_formats["int"].pattern}$')
     repair_value('Window', 'maximized', 'false', bool)
+    repair_value('Fileview', 'view', 'details', r'^(large)|(small)|(list)|(detail)$')
+    repair_value('Fileview', 'sort_by', 'name', f'^(name)|(type)|(date)|(size)|()$')
+    repair_value('Fileview', 'flat', 'no', bool)
+    repair_value('Fileview', 'second_panel', 'off', bool)
+    repair_value('Fileview', 'auto-refresh', 'no', bool)
+    repair_value('Toolbars', 'archive', 'on', bool)
+    repair_value('Toolbars', 'standard', 'on', bool)
+    repair_value('Toolbars', 'large_buttons', 'yes', bool)
+    repair_value('Toolbars', 'button_text', 'on', bool)
     os.makedirs(os.path.dirname(configpath), exist_ok=True) # Create the config directory if it doesn't already exist
     with open(configpath, 'w') as conf_file:
         config.write(conf_file)

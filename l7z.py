@@ -8,7 +8,7 @@ TODO: Write short description and usage help, to be output when help is requeste
 '''
 
 import sys, os, conf, datetime
-from typing import Callable
+from typing import Callable, Literal
 
 # Initialize the translation right-away so even the no-import message can be localized.
 from languages import *
@@ -21,7 +21,7 @@ if __name__ != '__main__':
 INSTALL_DIR:str = os.path.dirname(__file__)
 
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMenuBar, QMenu, QDialog
-from PyQt6.QtGui import QIcon, QAction
+from PyQt6.QtGui import QIcon, QAction, QActionGroup
 from PyQt6.QtCore import Qt
 
 l7z_app:QApplication = QApplication(sys.argv)
@@ -29,7 +29,18 @@ l7z_app:QApplication = QApplication(sys.argv)
 class L7z_GUI(QMainWindow):
     """The main GUI class"""
     ask_quit:bool = False
+
     __hashes:tuple[str, ...] = 'CRC-32|CRC-64|XXH64|SHA-1|SHA-256|BLAKE2sp|*'.split('|')
+    __view_sizes:tuple[str, ...] = 'large|small|list|detail'.split('|')
+    __sort_by:tuple[str, ...] = 'name|type|date|size|none'.split('|')
+    __timeformats:tuple[str, ...] = (
+        _('%Y-%m-%d'),
+        _('%Y-%m-%d %H:%M'),
+        _('%Y-%m-%d %H:%M:%S'),
+        _('%Y-%m-%d %H:%M:%S.%f'),
+        #_('%Y-%m-%d %H:%M:%S.%f')   # There's no Python strftime directive for more precision than %f
+    )
+
     def __init__(self):
         """Initialize the main GUI"""
         super().__init__()
@@ -49,14 +60,9 @@ class L7z_GUI(QMainWindow):
         ###########################
         menus:dict[str, QMenu] = {
             'file': QMenu(_('&File'), self),
-            'file/CRC': QMenu(_('CRC'), self),
             'edit': QMenu(_('&Edit'), self),
             'view': QMenu(_('&View'), self),
-                                   # ↓ is updated whenever the menu is opened, so doesn't need to be translated
-            'view/timeformat': QMenu(datetime.datetime.now().strftime('%Y-%m-%d'), self),
-            'view/toolbars': QMenu(_('Toolbars'), self),
             'favorites': QMenu(_('F&avorites'), self),
-            'favorites/add': QMenu(_('&Add folder to favorites as'), self),
             'tools': QMenu(_('&Tools'), self),
             'help': QMenu(_('&Help'), self)
         }
@@ -310,6 +316,207 @@ class L7z_GUI(QMainWindow):
 
         if True:    # 'view'
             ... #TODO: Implement this menu!
+            view_size:QActionGroup = QActionGroup(self)
+            view_size.setExclusive(True)
+            for action in (
+                self.__gen_QAction(
+                    _('Lar&ge icons'),
+                    (lambda: self.view_size('large')),
+                    self.view_size.__doc__,
+                    'Ctrl+1',
+                    True
+                ),
+                self.__gen_QAction(
+                    _('S&mall icons'),
+                    (lambda: self.view_size('small')),
+                    self.view_size.__doc__,
+                    'Ctrl+2',
+                    True
+                ),
+                self.__gen_QAction(
+                    _('&List'),
+                    (lambda: self.view_size('list')),
+                    self.view_size.__doc__,
+                    'Ctrl+3',
+                    True
+                ),
+                self.__gen_QAction(
+                    _('&Details'),
+                    (lambda: self.view_size('detail')),
+                    self.view_size.__doc__,
+                    'Ctrl+4',
+                    True
+                )
+            ):
+                view_size.addAction(action)
+            view_size.actions()[self.__view_sizes.index(self.get_view_size())].setChecked(True)
+            menus['view'].addActions(view_size.actions())
+            menus['view'].addSeparator()
+            sort_by:QActionGroup = QActionGroup(self)
+            sort_by.setExclusive(True)
+            for action in (
+                self.__gen_QAction(
+                    _('Name'),
+                    (lambda: self.sort_by('name')),
+                    self.sort_by.__doc__,
+                    'Ctrl+F3',
+                    True
+                ),
+                self.__gen_QAction(
+                    _('Type'),
+                    (lambda: self.sort_by('type')),
+                    self.sort_by.__doc__,
+                    'Ctrl+F4',
+                    True
+                ),
+                self.__gen_QAction(
+                    _('Date'),
+                    (lambda: self.sort_by('date')),
+                    self.sort_by.__doc__,
+                    'Ctrl+F5',
+                    True
+                ),
+                self.__gen_QAction(
+                    _('Size'),
+                    (lambda: self.sort_by('size')),
+                    self.sort_by.__doc__,
+                    'Ctrl+F6',
+                    True
+                ),
+                self.__gen_QAction(
+                    _('Unsorted'),
+                    (lambda: self.sort_by('none')),
+                    self.sort_by.__doc__,
+                    'Ctrl+F7',
+                    True
+                )
+            ):
+                sort_by.addAction(action)
+            sort_by.actions()[self.__sort_by.index(self.get_sort_by())].setChecked(True)
+            menus['view'].addActions(sort_by.actions())
+            menus['view'].addSeparator()
+            menus['view'].addActions((
+                self.__gen_QAction(
+                    _('Flat view'),
+                    self.flat_view,
+                    self.flat_view.__doc__,
+                    None,
+                    True
+                ),
+                self.__gen_QAction(
+                    _('&2 Panels'),
+                    self.two_panels,
+                    self.two_panels.__doc__,
+                    'F9',
+                    True
+                )
+            ))
+            menus['view'].actions()[-2].setChecked(self.get_flat_view())
+            menus['view'].actions()[-1].setChecked(self.get_two_panels())
+            if True:    # 'view/timeformat'
+                timeformat_list:QActionGroup = QActionGroup(self)
+                timeformat_list.setExclusive(True)
+                for timeformat in self.__timeformats:
+                    timeformat_list.addAction(self.__gen_QAction(
+                        f'{datetime.datetime.now().strftime(timeformat)}{"Z" if conf.getbool("L7z", "use_utc_time") else ""}',
+                        (lambda: self.set_timeformat(timeformat)),
+                        self.set_timeformat.__doc__,
+                        None,
+                        True
+                    ))
+                timeformat_list.actions()[self.__timeformats.index(conf.get('L7z', 'timestamp_format'))].setChecked(True)
+                menus['view/timeformat'].addActions(timeformat_list.actions())
+                menus['view/timeformat'].addAction(self.__gen_QAction(
+                    _('UTC'),
+                    self.toggle_utc,
+                    self.toggle_utc.__doc__,
+                    None,
+                    True
+                ))
+                menus['view/timeformat'].actions()[-1].setChecked(conf.getbool('L7z', 'use_utc_time'))
+                menus['view'].addMenu(menus['view/timeformat'])
+            if True:    # 'view/toolbars'
+                ... #TODO: Implement this menu!
+                visible_toolbars:QActionGroup =QActionGroup(self)
+                visible_toolbars.setExclusive(False)
+                for action in (
+                    self.__gen_QAction(
+                        _('Archive Toolbar'),
+                        self.toggle_archive_toolbar,
+                        self.toggle_archive_toolbar.__doc__,
+                        None,
+                        True
+                    ),
+                    self.__gen_QAction(
+                        _('Standard Toolbar'),
+                        self.toggle_standard_toolbar,
+                        self.toggle_standard_toolbar.__doc__,
+                        None,
+                        True
+                    )
+                ):
+                    visible_toolbars.addAction(action)
+                visible_toolbars.actions()[0].setChecked(conf.getbool('Toolbars', 'archive'))
+                visible_toolbars.actions()[1].setChecked(conf.getbool('Toolbars', 'standard'))
+                menus['view/toolbars'].addActions(visible_toolbars.actions())
+                menus['view/toolbars'].addSeparator()
+                toolbarbutton_settings:QActionGroup = QActionGroup(self)
+                toolbarbutton_settings.setExclusive(False)
+                for action in (
+                    self.__gen_QAction(
+                        _('Large Buttons'),
+                        self.toggle_large_toolbar_buttons,
+                        self.toggle_large_toolbar_buttons.__doc__,
+                        None,
+                        True
+                    ),
+                    self.__gen_QAction(
+                        _('Show Buttons Text'),
+                        self.toggle_toolbar_button_text,
+                        self.toggle_toolbar_button_text.__doc__,
+                        None,
+                        True
+                    )
+                ):
+                    toolbarbutton_settings.addAction(action)
+                toolbarbutton_settings.actions()[0].setChecked(conf.getbool('Toolbars', 'large_buttons'))
+                toolbarbutton_settings.actions()[1].setChecked(conf.getbool('Toolbars', 'button_text'))
+                menus['view/toolbars'].addActions(toolbarbutton_settings.actions())
+                menus['view'].addMenu(menus['view/toolbars'])
+            menus['view'].addActions((
+                self.__gen_QAction(
+                    _('Open Root Folder'),
+                    self.navigate_to_root,
+                    self.navigate_to_root.__doc__,
+                    '\\'
+                ),
+                self.__gen_QAction(
+                    _('Up One Level'),
+                    self.navigate_up,
+                    self.navigate_up.__doc__,
+                    'Backspace'
+                ),
+                self.__gen_QAction(
+                    _('Folders History…'),
+                    self.show_history,
+                    self.show_history.__doc__,
+                    'Alt+F12'
+                ),
+                self.__gen_QAction(
+                    _('Refresh'),
+                    self.refresh_fileview,
+                    self.refresh_fileview.__doc__,
+                    'Ctrl+R'
+                ),
+                self.__gen_QAction(
+                    _('Auto Refresh'),
+                    self.toggle_auto_refresh,
+                    self.toggle_auto_refresh.__doc__,
+                    None,
+                    True
+                ),
+            ))
+            menus['view'].actions()[-1].setChecked(conf.getbool('Fileview', 'auto-refresh'))
             self.menubar.addMenu(menus['view'])
 
         if True:    # 'favorites'
@@ -477,6 +684,97 @@ class L7z_GUI(QMainWindow):
     def deselect_type(self):
         """Deselect files in the current file view according to their type"""
         ... #TODO: Implement this!
+
+    def view_size(self, size:Literal[__view_sizes]):
+        """Change the size of the file entries in the file view"""
+        if size not in self.__view_sizes:
+            return  #TODO: Open up an error dialog saying that an invalid view size has been requested!
+        ... #TODO: Implement this!
+    def get_view_size(self) -> str:
+        """Get the current view size"""
+        ... #TODO: Implement this!
+        return 'detail'
+
+    def sort_by(self, param:Literal[__sort_by]):
+        """Change the property of the file entries in the file view that they are sorted by"""
+        if param not in self.__sort_by:
+            return  #TODO: Open up an error dialog saying that an invalid sorting property has been requested!
+        ... #TODO: Implement this!
+        conf.set('Fileview', 'sort_by', param)
+    def get_sort_by(self) -> str:
+        """Get the current sort_by property"""
+        ... #TODO: Implement this!
+        return 'name'
+
+    def flat_view(self):
+        """Toggle flat view"""
+        ... #TODO: Hook this into the GUI
+        conf.set('Fileview', 'flat', ('no' if conf.getbool('Fileview', 'flat') else 'yes'))
+    def get_flat_view(self) -> bool:
+        """Check if flat view is enabled"""
+        return conf.getbool('Fileview', 'flat')
+
+    def two_panels(self):
+        """Toggle second panel"""
+        ... #TODO: Hook this into the GUI
+        conf.set('Fileview', 'second_panel', ('off' if conf.getbool('Fileview', 'second_panel') else 'on'))
+    def get_two_panels(self) -> bool:
+        """Check if second panel is enabled"""
+        return conf.getbool('Fileview', 'second_panel')
+
+    def set_timeformat(self, format):
+        """Set the format to be used in timestamps"""
+        ... #TODO: Hook this into the GUI
+        conf.set('L7z', 'timestamp_format', format)
+    def get_timeformat(self) -> str:
+        """Get the currently-used timestamp format"""
+        return f'{conf.get("L7z", "timestamp_format")}{"Z" if conf.getbool("L7z", "use_utc_time") else ""}'
+
+    def toggle_utc(self):
+        """Toggle timestamp format between local timezone and UTC"""
+        ... #TODO: Hook this into the GUI
+        conf.set('L7z', 'use_utc_time', ('no' if conf.getbool('L7z', 'use_utc_time') else 'yes'))
+
+    def toggle_archive_toolbar(self):
+        """Toggle the archive toolbar on or off"""
+        ... #TODO: Hook this into the GUI
+        conf.set('Toolbars', 'archive', ('off' if conf.getbool('Toolbars', 'archive') else 'on'))
+
+    def toggle_standard_toolbar(self):
+        """Toggle the standard toolbar on or off"""
+        ... #TODO: Hook this into the GUI
+        conf.set('Toolbars', 'standard', ('off' if conf.getbool('Toolbars', 'standard') else 'on'))
+
+    def toggle_large_toolbar_buttons(self):
+        """Toggle the toolbar button size between small and large"""
+        ... #TODO: Hook this into the GUI
+        conf.set('Toolbars', 'large_buttons', ('no' if conf.getbool('Toolbars', 'large_buttons') else 'yes'))
+
+    def toggle_toolbar_button_text(self):
+        """Toggle the toolbar button text on or off"""
+        ... #TODO: Hook this into the GUI
+        conf.set('Toolbars', 'button_text', ('off' if conf.getbool('Toolbars', 'button_text') else 'on'))
+
+    def navigate_to_root(self):
+        """Navigate the currently-focused panel to the system root"""
+        ... #TODO: Implement this!
+
+    def navigate_up(self):
+        """Navigate the currently-focused panel one level up"""
+        ... #TODO: Implement this!
+
+    def show_history(self):
+        """Show the history of visited folders"""
+        ... #TODO: Implement this!
+
+    def refresh_fileview(self):
+        """Refresh the currently-focused panel"""
+        ... #TODO: Implement this!
+
+    def toggle_auto_refresh(self):
+        """Toggle auto-refresh"""
+        ... #TODO: Hook this into the GUI
+        conf.set('Fileview', 'auto-refresh', ('no' if conf.getbool('Fileview', 'auto-refresh') else 'yes'))
 
     def show_about(self):
         """Show the "About" dialogue"""
