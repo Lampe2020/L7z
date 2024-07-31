@@ -334,13 +334,22 @@ class L7z_GUI(QMainWindow):
         ###############################
         ... #TODO: Implement this!
 
-    def __gen_QAction(self, label:str, action:Callable, tooltip:str=None, shortcut:str=None) -> QAction:
+    def __gen_QAction(
+            self,
+            label:str,
+            action:Callable,
+            tooltip:str=None,
+            shortcut:str=None,
+            checkable:bool=False
+    ) -> QAction:
         """Generates a button with the given properties"""
         btn:QAction = QAction(label, self)
         if tooltip:
             btn.setStatusTip(tooltip)
         if shortcut:
             btn.setShortcut(shortcut)
+        if checkable:
+            btn.setCheckable(True)
         btn.triggered.connect(action)
         return btn
 
