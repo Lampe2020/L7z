@@ -29,6 +29,7 @@ l7z_app:QApplication = QApplication(sys.argv)
 class L7z_GUI(QMainWindow):
     """The main GUI class"""
     ask_quit:bool = False
+    __hashes:tuple[str, ...] = 'CRC-32|CRC-64|XXH64|SHA-1|SHA-256|BLAKE2sp|*'.split('|')
     def __init__(self):
         """Initialize the main GUI"""
         super().__init__()
@@ -59,6 +60,13 @@ class L7z_GUI(QMainWindow):
             'tools': QMenu(_('&Tools'), self),
             'help': QMenu(_('&Help'), self)
         }
+        menus.update({**menus,
+            'file/CRC': QMenu(_('CRC'), menus['file']),
+                                   # ↓ is updated whenever the menu is opened, so doesn't need to be translated
+            'view/timeformat': QMenu(datetime.datetime.now().strftime('%Y-%m-%d'), menus['view']),
+            'view/toolbars': QMenu(_('Toolbars'), menus['view']),
+            'favorites/add': QMenu(_('&Add folder to favorites as'), menus['favorites'])
+        })
         # In the following there are a few `if True` blocks, they are just for structuring the code according to the
         # menu it's currently working on.
         if True:    # 'file'
@@ -168,44 +176,44 @@ class L7z_GUI(QMainWindow):
                 menus['file/CRC'].addActions((
                     self.__gen_QAction(
                         _('CRC-32'),
-                        self.show_crc32_checksum,
-                        self.show_crc32_checksum.__doc__,
+                        (lambda: self.show_checksum('CRC-32')),
+                        self.show_checksum.__doc__,
                         None
                     ),
                     self.__gen_QAction(
                         _('CRC-64'),
-                        self.show_crc64_checksum,
-                        self.show_crc64_checksum.__doc__,
+                        (lambda: self.show_checksum('CRC-64')),
+                        self.show_checksum.__doc__,
                         None
                     ),
                     self.__gen_QAction(
                         _('XXH64'),
-                        self.show_xxh64_checksum,
-                        self.show_xxh64_checksum.__doc__,
+                        (lambda: self.show_checksum('XXH64')),
+                        self.show_checksum.__doc__,
                         None
                     ),
                     self.__gen_QAction(
                         _('SHA-1'),
-                        self.show_sha1_checksum,
-                        self.show_sha1_checksum.__doc__,
+                        (lambda: self.show_checksum('SHA-1')),
+                        self.show_checksum.__doc__,
                         None
                     ),
                     self.__gen_QAction(
                         _('SHA-256'),
-                        self.show_sha256_checksum,
-                        self.show_sha256_checksum.__doc__,
+                        (lambda: self.show_checksum('SHA-256')),
+                        self.show_checksum.__doc__,
                         None
                     ),
                     self.__gen_QAction(
                         _('BLAKE2sp'),
-                        self.show_blake2sp_checksum,
-                        self.show_blake2sp_checksum.__doc__,
+                        (lambda: self.show_checksum('BLAKE2sp')),
+                        self.show_checksum.__doc__,
                         None
                     ),
                     self.__gen_QAction(
                         _('*'),
-                        self.show_all_checksums,
-                        self.show_all_checksums.__doc__,
+                        (lambda: self.show_checksum('*')),
+                        self.show_checksum.__doc__,
                         None
                     )
                 ))
@@ -398,36 +406,10 @@ class L7z_GUI(QMainWindow):
         """Comment on a file"""
         ... #TODO: Implement this!
 
-    def show_crc32_checksum(self):
-        """Show the selected file's CRC-32 checksum"""
-        return self.show_checksum('CRC-32')
-
-    def show_crc64_checksum(self):
-        """Show the selected file's CRC-64 checksum"""
-        return self.show_checksum('CRC-64')
-
-    def show_xxh64_checksum(self):
-        """Show the selected file's XXH64 checksum"""
-        return self.show_checksum('XXH64')
-
-    def show_sha1_checksum(self):
-        """Show the selected file's SHA-1 checksum"""
-        return self.show_checksum('SHA-1')
-
-    def show_sha256_checksum(self):
-        """Show the selected file's SHA-256 checksum"""
-        return self.show_checksum('SHA-256')
-
-    def show_blake2sp_checksum(self):
-        """Show the selected file's BLAKE2sp checksum"""
-        return self.show_checksum('BLAKE2sp')
-
-    def show_all_checksums(self):
-        """Show all available checksums of the selected file"""
-        return self.show_checksum('*')
-
-    def show_checksum(self, checksum_type):
+    def show_checksum(self, checksum_type:Literal[__hashes]):
         """Show the selected file's checksum of the specified type"""
+        if checksum_type not in self.__hashes:
+            return  #TODO: Open up an error dialog saying that an invalid hash type has been requested!
         selected_checksums:dict[str, bytes] = {}
         if checksum_type in ('CRC-32', '*'):
             selected_checksums['CRC-32'] = b''      #TODO: Implement this hash!
