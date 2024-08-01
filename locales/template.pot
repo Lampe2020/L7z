@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-07-31 14:30+0200\n"
+"POT-Creation-Date: 2024-08-01 16:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,11 +47,11 @@ msgstr ""
 msgid "&File"
 msgstr ""
 
-#: ./l7z.py:63 ./l7z.py:222
+#: ./l7z.py:63 ./l7z.py:224
 msgid "&Edit"
 msgstr ""
 
-#: ./l7z.py:64 ./l7z.py:216
+#: ./l7z.py:64 ./l7z.py:218
 msgid "&View"
 msgstr ""
 
@@ -83,259 +83,263 @@ msgstr ""
 msgid "CRC SHA"
 msgstr ""
 
-#: ./l7z.py:86
-msgid "Add to archive…"
+#: ./l7z.py:88
+msgid "Add to archive..."
 msgstr ""
 
-#: ./l7z.py:92
-msgid "Compress and email…"
+#: ./l7z.py:94
+msgid "Compress and email..."
 msgstr ""
 
-#: ./l7z.py:98
+#: ./l7z.py:100
 msgid "Add to \"{filename}.7z\""
 msgstr ""
 
-#: ./l7z.py:104
+#: ./l7z.py:106
 msgid "Compress to \"{filename}\".7z and email"
 msgstr ""
 
-#: ./l7z.py:110
+#: ./l7z.py:112
 msgid "Add to \"{filename}.zip\""
 msgstr ""
 
-#: ./l7z.py:116
+#: ./l7z.py:118
 msgid "Compress to \"{filename}.zip\" and email"
 msgstr ""
 
-#: ./l7z.py:125 ./l7z.py:289
+#: ./l7z.py:127 ./l7z.py:291
 msgid "CRC-32"
 msgstr ""
 
-#: ./l7z.py:131 ./l7z.py:295
+#: ./l7z.py:133 ./l7z.py:297
 msgid "CRC-64"
 msgstr ""
 
-#: ./l7z.py:137 ./l7z.py:301
+#: ./l7z.py:139 ./l7z.py:303
 msgid "XXH64"
 msgstr ""
 
-#: ./l7z.py:143 ./l7z.py:307
+#: ./l7z.py:145 ./l7z.py:309
 msgid "SHA-1"
 msgstr ""
 
-#: ./l7z.py:149 ./l7z.py:313
+#: ./l7z.py:151 ./l7z.py:315
 msgid "SHA-256"
 msgstr ""
 
-#: ./l7z.py:155 ./l7z.py:319
+#: ./l7z.py:157 ./l7z.py:321
 msgid "BLAKE2sp"
 msgstr ""
 
-#: ./l7z.py:161 ./l7z.py:325
+#: ./l7z.py:163 ./l7z.py:327
 msgid "*"
 msgstr ""
 
-#: ./l7z.py:170
-msgid "SHA-256 → {filename}.sha256"
+#: ./l7z.py:172
+msgid "SHA-256 -> {filename}.sha256"
 msgstr ""
 
-#: ./l7z.py:176
+#: ./l7z.py:178
 msgid "Test Archive : Checksum"
 msgstr ""
 
-#: ./l7z.py:186
+#: ./l7z.py:188
 msgid "&Open"
 msgstr ""
 
-#: ./l7z.py:192
+#: ./l7z.py:194
 msgid "Open &Inside"
 msgstr ""
 
-#: ./l7z.py:198
+#: ./l7z.py:200
 msgid "Open Inside *"
 msgstr ""
 
-#: ./l7z.py:204
+#: ./l7z.py:206
 msgid "Open Inside #"
 msgstr ""
 
-#: ./l7z.py:210
+#: ./l7z.py:212
 msgid "Open O&utside"
 msgstr ""
 
-#: ./l7z.py:231
+#: ./l7z.py:233
 msgid "Rena&me"
 msgstr ""
 
-#: ./l7z.py:237
-msgid "&Copy to…"
+#: ./l7z.py:239
+msgid "&Copy to..."
 msgstr ""
 
-#: ./l7z.py:243
-msgid "&Move to…"
+#: ./l7z.py:245
+msgid "&Move to..."
 msgstr ""
 
-#: ./l7z.py:249
+#: ./l7z.py:251
 msgid "&Delete"
 msgstr ""
 
-#: ./l7z.py:258
-msgid "&Split file…"
+#: ./l7z.py:260
+msgid "&Split file..."
 msgstr ""
 
-#: ./l7z.py:264
-msgid "Com&bine files…"
+#: ./l7z.py:266
+msgid "Com&bine files..."
 msgstr ""
 
-#: ./l7z.py:273
+#: ./l7z.py:275
 msgid "P&roperties"
 msgstr ""
 
-#: ./l7z.py:279
-msgid "Comme&nt…"
+#: ./l7z.py:281
+msgid "Comme&nt..."
 msgstr ""
 
-#: ./l7z.py:334
+#: ./l7z.py:336
 msgid "Create folder"
 msgstr ""
 
-#: ./l7z.py:340
+#: ./l7z.py:342
 msgid "Create file"
 msgstr ""
 
-#: ./l7z.py:349
-msgid "&Link…"
+#: ./l7z.py:351
+msgid "&Link..."
 msgstr ""
 
-#: ./l7z.py:355
+#: ./l7z.py:357
 msgid "&Alternate streams"
 msgstr ""
 
-#: ./l7z.py:364
+#: ./l7z.py:366
 msgid "E&xit"
 msgstr ""
 
-#: ./l7z.py:375
+#: ./l7z.py:377
 msgid "Select &All"
 msgstr ""
 
-#: ./l7z.py:381
+#: ./l7z.py:383
 msgid "Deselect All"
 msgstr ""
 
-#: ./l7z.py:387
+#: ./l7z.py:389
 msgid "&Invert selection"
 msgstr ""
 
-#: ./l7z.py:393
-msgid "Select…"
+#: ./l7z.py:395
+msgid "Select..."
 msgstr ""
 
-#: ./l7z.py:399
-msgid "Deselect…"
+#: ./l7z.py:401
+msgid "Deselect..."
 msgstr ""
 
-#: ./l7z.py:408
+#: ./l7z.py:410
 msgid "Select by Type"
 msgstr ""
 
-#: ./l7z.py:414
+#: ./l7z.py:416
 msgid "Deselect by Type"
 msgstr ""
 
-#: ./l7z.py:428
+#: ./l7z.py:430
 msgid "Lar&ge icons"
 msgstr ""
 
-#: ./l7z.py:435
+#: ./l7z.py:437
 msgid "S&mall icons"
 msgstr ""
 
-#: ./l7z.py:442
+#: ./l7z.py:444
 msgid "&List"
 msgstr ""
 
-#: ./l7z.py:449
+#: ./l7z.py:451
 msgid "&Details"
 msgstr ""
 
-#: ./l7z.py:464
+#: ./l7z.py:466
 msgid "Name"
 msgstr ""
 
-#: ./l7z.py:471
+#: ./l7z.py:473
 msgid "Type"
 msgstr ""
 
-#: ./l7z.py:478
+#: ./l7z.py:480
 msgid "Date"
 msgstr ""
 
-#: ./l7z.py:485
+#: ./l7z.py:487
 msgid "Size"
 msgstr ""
 
-#: ./l7z.py:492
+#: ./l7z.py:494
 msgid "Unsorted"
 msgstr ""
 
-#: ./l7z.py:505
+#: ./l7z.py:507
 msgid "Flat view"
 msgstr ""
 
-#: ./l7z.py:512
+#: ./l7z.py:514
 msgid "&2 Panels"
 msgstr ""
 
-#: ./l7z.py:537
+#: ./l7z.py:539
 msgid "Custom timestamp format detected: {timestamp_format}"
 msgstr ""
 
-#: ./l7z.py:541
+#: ./l7z.py:543
 msgid "UTC"
 msgstr ""
 
-#: ./l7z.py:555
+#: ./l7z.py:556
 msgid "Archive Toolbar"
 msgstr ""
 
-#: ./l7z.py:562
+#: ./l7z.py:563
 msgid "Standard Toolbar"
 msgstr ""
 
-#: ./l7z.py:578
+#: ./l7z.py:579
 msgid "Large Buttons"
 msgstr ""
 
-#: ./l7z.py:585
+#: ./l7z.py:586
 msgid "Show Buttons Text"
 msgstr ""
 
-#: ./l7z.py:599
+#: ./l7z.py:600
 msgid "Open Root Folder"
 msgstr ""
 
-#: ./l7z.py:605
+#: ./l7z.py:606
 msgid "Up One Level"
 msgstr ""
 
-#: ./l7z.py:611
-msgid "Folders History…"
+#: ./l7z.py:612
+msgid "Folders History..."
 msgstr ""
 
-#: ./l7z.py:617
+#: ./l7z.py:618
 msgid "Refresh"
 msgstr ""
 
-#: ./l7z.py:623
+#: ./l7z.py:624
 msgid "Auto Refresh"
 msgstr ""
 
-#: ./l7z.py:923
-msgid "Starting L7z on {platform}…"
+#: ./l7z.py:638
+msgid "Bookmark {i}"
 msgstr ""
 
-#: ./languages.py:38
+#: ./l7z.py:949
+msgid "Starting L7z on {platform}..."
+msgstr ""
+
+#: ./languages.py:31
 msgid "Unsupported lang in conf: {lang}, reverting to {sys_lang}."
 msgstr ""
 

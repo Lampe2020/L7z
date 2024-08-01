@@ -1,9 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: l7z\n"
-"POT-Creation-Date: 2024-07-31 14:30+0200\n"
-"PO-Revision-Date: 2024-07-31 15:14+0200\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2024-08-01 16:44+0200\n"
+"PO-Revision-Date: 2024-08-01 16:52+0200\n"
+"Last-Translator: Christian Lampe <kontakt+translation@lampe2020."
+"de>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -50,11 +51,11 @@ msgstr "Konnte Fenstergeometrie nicht setzen!"
 msgid "&File"
 msgstr "&Datei"
 
-#: l7z.py:63 l7z.py:222
+#: l7z.py:63 l7z.py:224
 msgid "&Edit"
 msgstr "&Bearbeiten"
 
-#: l7z.py:64 l7z.py:216
+#: l7z.py:64 l7z.py:218
 msgid "&View"
 msgstr "&Ansicht"
 
@@ -76,7 +77,7 @@ msgstr "CRC"
 
 #: l7z.py:74
 msgid "Toolbars"
-msgstr "&Symbolleisten "
+msgstr "&Symbolleisten"
 
 #: l7z.py:75
 msgid "&Add folder to favorites as"
@@ -86,259 +87,263 @@ msgstr "&Ordner hinzufügen als"
 msgid "CRC SHA"
 msgstr "CRC SHA"
 
-#: l7z.py:86
-msgid "Add to archive…"
-msgstr "Zu einem Archiv hinzufügen…"
+#: l7z.py:88
+msgid "Add to archive..."
+msgstr "Zu einem Archiv hinzufügen..."
 
-#: l7z.py:92
-msgid "Compress and email…"
-msgstr "Archivieren und versenden…"
+#: l7z.py:94
+msgid "Compress and email..."
+msgstr "Archivieren und versenden..."
 
-#: l7z.py:98
+#: l7z.py:100
 msgid "Add to \"{filename}.7z\""
 msgstr "Hinzufügen zu \"{filename}.7z\""
 
-#: l7z.py:104
+#: l7z.py:106
 msgid "Compress to \"{filename}\".7z and email"
 msgstr "Hinzufügen zu \"{filename}.7z\" und versenden"
 
-#: l7z.py:110
+#: l7z.py:112
 msgid "Add to \"{filename}.zip\""
 msgstr "Hinzufügen zu \"{filename}.zip\""
 
-#: l7z.py:116
+#: l7z.py:118
 msgid "Compress to \"{filename}.zip\" and email"
 msgstr "Hinzufügen zu \"{filename}.zip\" und versenden"
 
-#: l7z.py:125 l7z.py:289
+#: l7z.py:127 l7z.py:291
 msgid "CRC-32"
 msgstr "CRC-32"
 
-#: l7z.py:131 l7z.py:295
+#: l7z.py:133 l7z.py:297
 msgid "CRC-64"
 msgstr "CRC-64"
 
-#: l7z.py:137 l7z.py:301
+#: l7z.py:139 l7z.py:303
 msgid "XXH64"
 msgstr "XXH64"
 
-#: l7z.py:143 l7z.py:307
+#: l7z.py:145 l7z.py:309
 msgid "SHA-1"
 msgstr "SHA-1"
 
-#: l7z.py:149 l7z.py:313
+#: l7z.py:151 l7z.py:315
 msgid "SHA-256"
 msgstr "SHA-256"
 
-#: l7z.py:155 l7z.py:319
+#: l7z.py:157 l7z.py:321
 msgid "BLAKE2sp"
 msgstr "BLAKE2sp"
 
-#: l7z.py:161 l7z.py:325
+#: l7z.py:163 l7z.py:327
 msgid "*"
 msgstr "*"
 
-#: l7z.py:170
+#: l7z.py:172
 msgid "SHA-256 → {filename}.sha256"
-msgstr "SHA-256 → {filename}.sha256"
+msgstr "SHA-256 -> {filename}.sha256"
 
-#: l7z.py:176
+#: l7z.py:178
 msgid "Test Archive : Checksum"
 msgstr "Archiv : Testsumme testen"
 
-#: l7z.py:186
+#: l7z.py:188
 msgid "&Open"
 msgstr "Ö&ffnen"
 
-#: l7z.py:192
+#: l7z.py:194
 msgid "Open &Inside"
 msgstr "I&ntern öffnen"
 
-#: l7z.py:198
+#: l7z.py:200
 msgid "Open Inside *"
 msgstr "Intern Öffnen *"
 
-#: l7z.py:204
+#: l7z.py:206
 msgid "Open Inside #"
 msgstr "Intern Öffnen #"
 
-#: l7z.py:210
+#: l7z.py:212
 msgid "Open O&utside"
 msgstr "E&xtern öffnen"
 
-#: l7z.py:231
+#: l7z.py:233
 msgid "Rena&me"
 msgstr "U&mbenennen"
 
-#: l7z.py:237
-msgid "&Copy to…"
-msgstr "Kopieren nach…"
+#: l7z.py:239
+msgid "&Copy to..."
+msgstr "Kopieren nach..."
 
-#: l7z.py:243
-msgid "&Move to…"
-msgstr "Verschieben nach…"
+#: l7z.py:245
+msgid "&Move to..."
+msgstr "Verschieben nach..."
 
-#: l7z.py:249
+#: l7z.py:251
 msgid "&Delete"
 msgstr "Löschen"
 
-#: l7z.py:258
-msgid "&Split file…"
-msgstr "Datei auf&spalten…"
+#: l7z.py:260
+msgid "&Split file..."
+msgstr "Datei auf&spalten..."
 
-#: l7z.py:264
-msgid "Com&bine files…"
-msgstr "Dateien kom&binieren…"
+#: l7z.py:266
+msgid "Com&bine files..."
+msgstr "Dateien kom&binieren..."
 
-#: l7z.py:273
+#: l7z.py:275
 msgid "P&roperties"
 msgstr "Eigenschaften"
 
-#: l7z.py:279
-msgid "Comme&nt…"
-msgstr "Komme&ntieren…"
+#: l7z.py:281
+msgid "Comme&nt..."
+msgstr "Komme&ntieren..."
 
-#: l7z.py:334
+#: l7z.py:336
 msgid "Create folder"
 msgstr "Ordner erstellen"
 
-#: l7z.py:340
+#: l7z.py:342
 msgid "Create file"
 msgstr "Datei erstellen"
 
-#: l7z.py:349
-msgid "&Link…"
-msgstr "Verknüpfen…"
+#: l7z.py:351
+msgid "&Link..."
+msgstr "Verknüpfen..."
 
-#: l7z.py:355
+#: l7z.py:357
 msgid "&Alternate streams"
 msgstr "&Alternative Datenströme"
 
-#: l7z.py:364
+#: l7z.py:366
 msgid "E&xit"
 msgstr "&Verlassen"
 
-#: l7z.py:375
+#: l7z.py:377
 msgid "Select &All"
 msgstr "&Alle auswählen"
 
-#: l7z.py:381
+#: l7z.py:383
 msgid "Deselect All"
 msgstr "Alle abwählen"
 
-#: l7z.py:387
+#: l7z.py:389
 msgid "&Invert selection"
 msgstr "Auswah &invertieren"
 
-#: l7z.py:393
-msgid "Select…"
-msgstr "Auswählen…"
+#: l7z.py:395
+msgid "Select..."
+msgstr "Auswählen..."
 
-#: l7z.py:399
-msgid "Deselect…"
-msgstr "Abwählen…"
+#: l7z.py:401
+msgid "Deselect..."
+msgstr "Abwählen..."
 
-#: l7z.py:408
+#: l7z.py:410
 msgid "Select by Type"
 msgstr "Nach Typ auswählen"
 
-#: l7z.py:414
+#: l7z.py:416
 msgid "Deselect by Type"
 msgstr "Nach Typ abwählen"
 
-#: l7z.py:428
+#: l7z.py:430
 msgid "Lar&ge icons"
 msgstr "&Große Symbole"
 
-#: l7z.py:435
+#: l7z.py:437
 msgid "S&mall icons"
 msgstr "&Kleine Symbole"
 
-#: l7z.py:442
+#: l7z.py:444
 msgid "&List"
 msgstr "&Liste"
 
-#: l7z.py:449
+#: l7z.py:451
 msgid "&Details"
 msgstr "&Details"
 
-#: l7z.py:464
+#: l7z.py:466
 msgid "Name"
 msgstr "Name"
 
-#: l7z.py:471
+#: l7z.py:473
 msgid "Type"
 msgstr "Typ"
 
-#: l7z.py:478
+#: l7z.py:480
 msgid "Date"
 msgstr "Datum"
 
-#: l7z.py:485
+#: l7z.py:487
 msgid "Size"
 msgstr "Größe"
 
-#: l7z.py:492
+#: l7z.py:494
 msgid "Unsorted"
 msgstr "Unsortiert"
 
-#: l7z.py:505
+#: l7z.py:507
 msgid "Flat view"
 msgstr "Flache Ansicht"
 
-#: l7z.py:512
+#: l7z.py:514
 msgid "&2 Panels"
 msgstr "&Zweigeteiltes Fenster"
 
-#: l7z.py:537
+#: l7z.py:539
 msgid "Custom timestamp format detected: {timestamp_format}"
 msgstr "Angepasstes Zeitstempelformat erkannt: {timestamp_format}"
 
-#: l7z.py:541
+#: l7z.py:543
 msgid "UTC"
 msgstr "UTC"
 
-#: l7z.py:555
+#: l7z.py:556
 msgid "Archive Toolbar"
 msgstr "Archivfunktionen"
 
-#: l7z.py:562
+#: l7z.py:563
 msgid "Standard Toolbar"
 msgstr "Standardfunktionen"
 
-#: l7z.py:578
+#: l7z.py:579
 msgid "Large Buttons"
 msgstr "Große Schaltflächen"
 
-#: l7z.py:585
+#: l7z.py:586
 msgid "Show Buttons Text"
 msgstr "Schaltflächenbeschriftung"
 
-#: l7z.py:599
+#: l7z.py:600
 msgid "Open Root Folder"
 msgstr "Wurzelverzeichnis"
 
-#: l7z.py:605
+#: l7z.py:606
 msgid "Up One Level"
 msgstr "Übergeordneter Ordner"
 
-#: l7z.py:611
-msgid "Folders History…"
-msgstr "Ordnerverlauf…"
+#: l7z.py:612
+msgid "Folders History..."
+msgstr "Ordnerverlauf..."
 
-#: l7z.py:617
+#: l7z.py:618
 msgid "Refresh"
 msgstr "&Aktualisieren"
 
-#: l7z.py:623
+#: l7z.py:624
 msgid "Auto Refresh"
 msgstr "Auto-Aktualisierung"
 
-#: l7z.py:923
-msgid "Starting L7z on {platform}…"
-msgstr "Starte L7z auf {platform}…"
+#: l7z.py:638
+msgid "Bookmark {i}"
+msgstr "Favorit {i}"
 
-#: languages.py:38
+#: l7z.py:949
+msgid "Starting L7z on {platform}..."
+msgstr "Starte L7z auf {platform}..."
+
+#: languages.py:31
 msgid "Unsupported lang in conf: {lang}, reverting to {sys_lang}."
 msgstr ""
 "Nicht unterstützte Sprache in Konfigurationsdatei: {lang}, wird zu "
