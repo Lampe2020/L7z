@@ -632,7 +632,24 @@ class L7z_GUI(QMainWindow):
             self.menubar.addMenu(menus['view'])
 
         if True:    # 'favorites'
-            ... #TODO: Implement this menu!
+            if True:    # 'favorites/add'
+                menus['favorites/add'].addActions(
+                    self.__gen_QAction(
+                        _('Bookmark {i}').format(i=i),
+                        (lambda: self.navigate_to_bookmark(i)),
+                        self.navigate_to_bookmark.__doc__,
+                        f'Alt+Shift+{i}'
+                    )
+                )
+                menus['favorites'].addMenu(menus['favorites/add'])
+            menus['favorites'].addActions(
+                self.__gen_QAction(
+                    '-',
+                    (lambda: self.navigate_to_favorite(i)),
+                    self.navigate_to_favorite.__doc__,
+                    f'Alt+{i}'
+                ) for i in range(10)
+            )
             self.menubar.addMenu(menus['favorites'])
 
         if True:    # 'tools'
@@ -895,6 +912,14 @@ class L7z_GUI(QMainWindow):
         """Toggle auto-refresh"""
         ... #TODO: Hook this into the GUI
         conf.set('Fileview', 'auto-refresh', ('no' if conf.getbool('Fileview', 'auto-refresh') else 'yes'))
+
+    def navigate_to_favorite(self, i):
+        """Navigates to your i'th favorite"""
+        ... #TODO: Implement this!
+
+    def navigate_to_bookmark(self, i):
+        """Navigates to your i'th bookmark"""
+        ... #TODO: Implement this!
 
     def show_about(self):
         """Show the "About" dialogue"""
