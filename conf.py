@@ -108,8 +108,6 @@ def restore():
     repair_value('Locations', 'latest', '~')
     repair_value('Locations', 'latest_2nd', '~')
     for i in range(10):
-        repair_value('Locations', f'favorite_{i}', '')
-    for i in range(10):
         repair_value('Locations', f'bookmark_{i}', '')
     os.makedirs(os.path.dirname(configpath), exist_ok=True) # Create the config directory if it doesn't already exist
     with open(configpath, 'w') as conf_file:
