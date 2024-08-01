@@ -913,12 +913,12 @@ class L7z_GUI(QMainWindow):
         ... #TODO: Hook this into the GUI
         conf.set('Fileview', 'auto-refresh', ('no' if conf.getbool('Fileview', 'auto-refresh') else 'yes'))
 
-    def navigate_to_bookmark(self, i):
-        """Navigates to your i'th bookmark"""
+    def set_bookmark(self, i):
+        """Places your current location into the i'th bookmark"""
         ... #TODO: Implement this!
 
-    def set_bookmark(self, i):
-        """Sets your i'th bookmark to be the selected file"""
+    def navigate_to_bookmark(self, i):
+        """Navigates to your i'th bookmark"""
         ... #TODO: Implement this!
 
     def show_about(self):
