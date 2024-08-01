@@ -644,7 +644,7 @@ class L7z_GUI(QMainWindow):
                 menus['favorites'].addMenu(menus['favorites/add'])
             menus['favorites'].addActions(
                 self.__gen_QAction(
-                    '-',
+                    (conf.get('Locations', f'favorite_{i}', '-') or '-'),
                     (lambda *args, i=i: self.navigate_to_favorite(i)),
                     self.navigate_to_favorite.__doc__,
                     f'Alt+{i}'
