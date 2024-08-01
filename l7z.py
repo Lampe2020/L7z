@@ -647,11 +647,49 @@ class L7z_GUI(QMainWindow):
             self.menubar.addMenu(menus['favorites'])
 
         if True:    # 'tools'
-            ... #TODO: Implement this menu!
+            menus['tools'].addAction((
+                self.__gen_QAction(
+                    _('&Options...'),
+                    self.show_settings_dialog,
+                    self.show_settings_dialog.__doc__
+                )
+            ))
+            menus['tools'].addSeparator()
+            menus['tools'].addAction((
+                self.__gen_QAction(
+                    _('&Benchmark'),
+                    self.benchmark,
+                    self.benchmark.__doc__
+                )
+            ))
+            menus['tools'].addAction((
+                self.__gen_QAction(
+                    _('Delete Temporary Files...'),
+                    self.del_temp_files,
+                    self.del_temp_files.__doc__
+                )
+            ))
+            menus['tools'].addSeparator()
+            menus['tools'].addSeparator()
             self.menubar.addMenu(menus['tools'])
 
         if True:    # 'help'
-            ... #TODO: Implement this menu!
+            menus['help'].addAction(
+                self.__gen_QAction(
+                    _('&Contents...'),
+                    self.show_help_dialog,
+                    self.show_help_dialog.__doc__,
+                    'F1'
+                )
+            )
+            menus['help'].addSeparator()
+            menus['help'].addAction(
+                self.__gen_QAction(
+                    _('&About L7z...'),
+                    self.show_about_dialog,
+                    self.show_about_dialog.__doc__
+                )
+            )
             self.menubar.addMenu(menus['help'])
 
         ##########################
@@ -915,8 +953,24 @@ class L7z_GUI(QMainWindow):
         """Navigates to your i'th bookmark"""
         ... #TODO: Implement this!
 
-    def show_about(self):
-        """Show the "About" dialogue"""
+    def show_settings_dialog(self):
+        """Show the "Options" dialog"""
+        ... #TODO: Implement "Options" dialog
+
+    def benchmark(self):
+        """Benchmark compression performance"""
+        ... #TODO: Implement this!
+
+    def del_temp_files(self):
+        """Delete L7z's and 7-Zip's temporary files"""
+        ... #TODO: Implement this!
+
+    def show_help_dialog(self):
+        """Show the "Help" dialog"""
+        ... #TODO: Implement "Help" dialog
+
+    def show_about_dialog(self):
+        """Show the "About" dialog"""
         ... #TODO: Implement "About" dialog
 
     def quit(self):
