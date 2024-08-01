@@ -692,9 +692,9 @@ class L7z_GUI(QMainWindow):
             )
             self.menubar.addMenu(menus['help'])
 
-        ##########################
-        # Initialize the toolbar #
-        ##########################
+        #############################
+        # Initialize the toolbar(s) #
+        #############################
         ... #TODO: Implement this!
 
         ###############################
