@@ -105,6 +105,8 @@ def restore():
     repair_value('Toolbars', 'standard', 'on', bool)
     repair_value('Toolbars', 'large_buttons', 'yes', bool)
     repair_value('Toolbars', 'button_text', 'on', bool)
+    repair_value('Locations', 'latest', '~')
+    repair_value('Locations', 'latest_2nd', '~')
     for i in range(10):
         repair_value('Locations', f'favorite_{i}', '')
     for i in range(10):
