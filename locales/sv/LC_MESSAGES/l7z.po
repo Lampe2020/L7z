@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: l7z\n"
-"POT-Creation-Date: 2024-08-01 16:48+0200\n"
-"PO-Revision-Date: 2024-08-01 16:51+0200\n"
+"POT-Creation-Date: 2024-08-01 17:21+0200\n"
+"PO-Revision-Date: 2024-08-01 17:22+0200\n"
 "Last-Translator: Christian Lampe <kontakt+translation@lampe2020.de>\n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -50,11 +50,11 @@ msgstr "Kunde inte spara fönstergeometri!"
 msgid "&File"
 msgstr "&Arkiv"
 
-#: l7z.py:63 l7z.py:224
+#: l7z.py:63 l7z.py:222
 msgid "&Edit"
 msgstr "&Redigera"
 
-#: l7z.py:64 l7z.py:218
+#: l7z.py:64 l7z.py:216
 msgid "&View"
 msgstr "&Visa"
 
@@ -110,31 +110,31 @@ msgstr "Lägg till i \"{filename}.zip\""
 msgid "Compress to \"{filename}.zip\" and email"
 msgstr "Komprimera till \"{filename}.zip\" och skicka som e-post"
 
-#: l7z.py:127 l7z.py:291
+#: l7z.py:127 l7z.py:287
 msgid "CRC-32"
 msgstr "CRC-32"
 
-#: l7z.py:133 l7z.py:297
+#: l7z.py:133 l7z.py:293
 msgid "CRC-64"
 msgstr "CRC-64"
 
-#: l7z.py:139 l7z.py:303
+#: l7z.py:139 l7z.py:299
 msgid "XXH64"
 msgstr "XXH64"
 
-#: l7z.py:145 l7z.py:309
+#: l7z.py:145 l7z.py:305
 msgid "SHA-1"
 msgstr "SHA-1"
 
-#: l7z.py:151 l7z.py:315
+#: l7z.py:151 l7z.py:311
 msgid "SHA-256"
 msgstr "SHA-256"
 
-#: l7z.py:157 l7z.py:321
+#: l7z.py:157 l7z.py:317
 msgid "BLAKE2sp"
 msgstr "BLAKE2sp"
 
-#: l7z.py:163 l7z.py:327
+#: l7z.py:163 l7z.py:323
 msgid "*"
 msgstr "*"
 
@@ -158,187 +158,207 @@ msgstr "Öppna &internt"
 msgid "Open Inside *"
 msgstr "Öppna internt *"
 
-#: l7z.py:206
+#: l7z.py:205
 msgid "Open Inside #"
 msgstr "Öppna internt #"
 
-#: l7z.py:212
+#: l7z.py:210
 msgid "Open O&utside"
 msgstr "Öppna &externt"
 
-#: l7z.py:233
+#: l7z.py:231
 msgid "Rena&me"
 msgstr "&Byt namn"
 
-#: l7z.py:239
+#: l7z.py:237
 msgid "&Copy to..."
 msgstr "&Kopiera till..."
 
-#: l7z.py:245
+#: l7z.py:243
 msgid "&Move to..."
 msgstr "&Kopiera till..."
 
-#: l7z.py:251
+#: l7z.py:249
 msgid "&Delete"
 msgstr "&Ta bort"
 
-#: l7z.py:260
+#: l7z.py:258
 msgid "&Split file..."
 msgstr "&Dela upp fil..."
 
-#: l7z.py:266
+#: l7z.py:263
 msgid "Com&bine files..."
 msgstr "&Sammanfoga filer..."
 
-#: l7z.py:275
+#: l7z.py:271
 msgid "P&roperties"
 msgstr "E&genskaper"
 
-#: l7z.py:281
+#: l7z.py:277
 msgid "Comme&nt..."
 msgstr "Komme&ntera..."
 
-#: l7z.py:336
+#: l7z.py:332
 msgid "Create folder"
 msgstr "Skapa mapp"
 
-#: l7z.py:342
+#: l7z.py:338
 msgid "Create file"
 msgstr "Skapa fil"
 
-#: l7z.py:351
+#: l7z.py:347
 msgid "&Link..."
 msgstr "&Länka..."
 
-#: l7z.py:357
+#: l7z.py:352
 msgid "&Alternate streams"
 msgstr "&Alternativa dataströmmar"
 
-#: l7z.py:366
+#: l7z.py:360
 msgid "E&xit"
 msgstr "&Avsluta"
 
-#: l7z.py:377
+#: l7z.py:371
 msgid "Select &All"
 msgstr "Markera &alla"
 
-#: l7z.py:383
+#: l7z.py:377
 msgid "Deselect All"
 msgstr "Avmarkera alla"
 
-#: l7z.py:389
+#: l7z.py:383
 msgid "&Invert selection"
 msgstr "&Invertera markeringen"
 
-#: l7z.py:395
+#: l7z.py:389
 msgid "Select..."
 msgstr "Markera..."
 
-#: l7z.py:401
+#: l7z.py:395
 msgid "Deselect..."
 msgstr "Avmarkera..."
 
-#: l7z.py:410
+#: l7z.py:404
 msgid "Select by Type"
 msgstr "Markera efter typ"
 
-#: l7z.py:416
+#: l7z.py:410
 msgid "Deselect by Type"
 msgstr "Avmarkera efter typ"
 
-#: l7z.py:430
+#: l7z.py:424
 msgid "Lar&ge icons"
 msgstr "St&ora ikoner"
 
-#: l7z.py:437
+#: l7z.py:431
 msgid "S&mall icons"
 msgstr "Sm&å ikoner"
 
-#: l7z.py:444
+#: l7z.py:438
 msgid "&List"
 msgstr "&Lista"
 
-#: l7z.py:451
+#: l7z.py:445
 msgid "&Details"
 msgstr "&Detaljerad lista"
 
-#: l7z.py:466
+#: l7z.py:460
 msgid "Name"
 msgstr "Namn"
 
-#: l7z.py:473
+#: l7z.py:467
 msgid "Type"
 msgstr "Typ"
 
-#: l7z.py:480
+#: l7z.py:474
 msgid "Date"
 msgstr "Ändrad"
 
-#: l7z.py:487
+#: l7z.py:481
 msgid "Size"
 msgstr "Storlek"
 
-#: l7z.py:494
+#: l7z.py:488
 msgid "Unsorted"
 msgstr "Osorterad"
 
-#: l7z.py:507
+#: l7z.py:501
 msgid "Flat view"
 msgstr "Platt vy"
 
-#: l7z.py:514
+#: l7z.py:508
 msgid "&2 Panels"
 msgstr "&Två Paneler"
 
-#: l7z.py:539
+#: l7z.py:533
 msgid "Custom timestamp format detected: {timestamp_format}"
 msgstr "Anpassat tidsstämpelformat upptäckt: {timestamp_format}"
 
-#: l7z.py:543
+#: l7z.py:537
 msgid "UTC"
 msgstr "UTC"
 
-#: l7z.py:556
+#: l7z.py:550
 msgid "Archive Toolbar"
 msgstr "Verktygsfältet Arkiv"
 
-#: l7z.py:563
+#: l7z.py:557
 msgid "Standard Toolbar"
 msgstr "Verktygsfältet Standard"
 
-#: l7z.py:579
+#: l7z.py:573
 msgid "Large Buttons"
 msgstr "Stora knappar"
 
-#: l7z.py:586
+#: l7z.py:580
 msgid "Show Buttons Text"
 msgstr "Visa knapptext"
 
-#: l7z.py:600
+#: l7z.py:594
 msgid "Open Root Folder"
 msgstr "Öppna rotmappen"
 
-#: l7z.py:606
+#: l7z.py:600
 msgid "Up One Level"
 msgstr "Upp en nivå"
 
-#: l7z.py:612
+#: l7z.py:606
 msgid "Folders History..."
 msgstr "Mapphistorik..."
 
-#: l7z.py:618
+#: l7z.py:612
 msgid "Refresh"
 msgstr "&Uppdatera"
 
-#: l7z.py:624
+#: l7z.py:618
 msgid "Auto Refresh"
 msgstr "Uppdatera  automatiskt"
 
-#: l7z.py:638
+#: l7z.py:632
 msgid "Bookmark {i}"
 msgstr "Bokmärke {i}"
 
-#: l7z.py:949
+#: l7z.py:652
+msgid "&Options..."
+msgstr "&Alternativ..."
+
+#: l7z.py:660
+msgid "&Benchmark"
+msgstr "&Prestandamått"
+
+#: l7z.py:667
+msgid "Delete Temporary Files..."
+msgstr "Radera temporära filer..."
+
+#: l7z.py:679
+msgid "&Contents..."
+msgstr "&Hjälp..."
+
+#: l7z.py:688
+msgid "&About L7z..."
+msgstr "&Om L7z..."
+
+#: l7z.py:997
 msgid "Starting L7z on {platform}..."
 msgstr "Startar L7z på {platform}..."
 
