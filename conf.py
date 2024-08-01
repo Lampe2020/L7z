@@ -105,6 +105,10 @@ def restore():
     repair_value('Toolbars', 'standard', 'on', bool)
     repair_value('Toolbars', 'large_buttons', 'yes', bool)
     repair_value('Toolbars', 'button_text', 'on', bool)
+    for i in range(10):
+        repair_value('Locations', f'favorite_{i}', '')
+    for i in range(10):
+        repair_value('Locations', f'bookmark_{i}', '')
     os.makedirs(os.path.dirname(configpath), exist_ok=True) # Create the config directory if it doesn't already exist
     with open(configpath, 'w') as conf_file:
         config.write(conf_file)
