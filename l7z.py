@@ -85,13 +85,13 @@ class L7z_GUI(QMainWindow):
                 # the selected file's name, if multiple are selected set it to the parent dir's name.
                 menus['file/7-zip'].addActions((
                     self.__gen_QAction(
-                        _('Add to archive…'),
+                        _('Add to archive...'),
                         self.add_to_archive,
                         self.add_to_archive.__doc__,
                         None
                     ),
                     self.__gen_QAction(
-                        _('Compress and email…'),
+                        _('Compress and email...'),
                         self.add_to_archive,
                         self.add_to_archive.__doc__,
                         None
@@ -169,7 +169,7 @@ class L7z_GUI(QMainWindow):
                     menus['file/7-zip/crc'].addSeparator()
                     menus['file/7-zip/crc'].addActions((
                         self.__gen_QAction(
-                            _('SHA-256 → {filename}.sha256'),
+                            _('SHA-256 -> {filename}.sha256'),
                             self.save_sha256,
                             self.save_sha256.__doc__,
                             None
@@ -236,13 +236,13 @@ class L7z_GUI(QMainWindow):
                     'F2'
                 ),
                 self.__gen_QAction(
-                    _('&Copy to…'),
+                    _('&Copy to...'),
                     self.rename_file,
                     self.rename_file.__doc__,
                     'F5'
                 ),
                 self.__gen_QAction(
-                    _('&Move to…'),
+                    _('&Move to...'),
                     self.rename_file,
                     self.rename_file.__doc__,
                     'F6'
@@ -257,13 +257,13 @@ class L7z_GUI(QMainWindow):
             menus['file'].addSeparator()
             menus['file'].addActions((
                 self.__gen_QAction(
-                    _('&Split file…'),
+                    _('&Split file...'),
                     self.split_file,
                     self.split_file.__doc__,
                     None
                 ),
                 self.__gen_QAction(
-                    _('Com&bine files…'),
+                    _('Com&bine files...'),
                     self.combine_files,
                     self.combine_files.__doc__,
                     None
@@ -278,7 +278,7 @@ class L7z_GUI(QMainWindow):
                     'Alt+Enter'
                 ),
                 self.__gen_QAction(
-                    _('Comme&nt…'),
+                    _('Comme&nt...'),
                     self.comment,
                     self.comment.__doc__,
                     'Ctrl+Z'
@@ -348,7 +348,7 @@ class L7z_GUI(QMainWindow):
             menus['file'].addSeparator()
             menus['file'].addActions((
                 self.__gen_QAction(
-                    _('&Link…'),
+                    _('&Link...'),
                     self.link,
                     self.link.__doc__,
                     None
@@ -392,13 +392,13 @@ class L7z_GUI(QMainWindow):
                     '*'         # '[NumPad*]'
                 ),
                 self.__gen_QAction(
-                    _('Select…'),
+                    _('Select...'),
                     self.select_all,
                     self.select_all.__doc__,
                     '+'         # '[NumPad+]'
                 ),
                 self.__gen_QAction(
-                    _('Deselect…'),
+                    _('Deselect...'),
                     self.select_all,
                     self.select_all.__doc__,
                     '-'         # '[NumPad-]'
@@ -609,7 +609,7 @@ class L7z_GUI(QMainWindow):
                     'Backspace'
                 ),
                 self.__gen_QAction(
-                    _('Folders History…'),
+                    _('Folders History...'),
                     self.show_history,
                     self.show_history.__doc__,
                     'Alt+F12'
@@ -946,7 +946,7 @@ class L7z_GUI(QMainWindow):
             event.ignore()
 
 #debug
-print(_('Starting L7z on {platform}…').format(platform=sys.platform))
+print(_('Starting L7z on {platform}...').format(platform=sys.platform))
 
 main_window:L7z_GUI = L7z_GUI()
 main_window.show()
