@@ -199,14 +199,12 @@ class L7z_GUI(QMainWindow):
                 self.__gen_QAction(
                     _('Open Inside *'),
                     self.open_selected_star,
-                    self.open_selected_star.__doc__,
-                    None
+                    self.open_selected_star.__doc__
                 ),
                 self.__gen_QAction(
                     _('Open Inside #'),
                     self.open_selected_hashtag,
-                    self.open_selected_hashtag.__doc__,
-                    None
+                    self.open_selected_hashtag.__doc__
                 ),
                 self.__gen_QAction(
                     _('Open O&utside'),
@@ -259,14 +257,12 @@ class L7z_GUI(QMainWindow):
                 self.__gen_QAction(
                     _('&Split file...'),
                     self.split_file,
-                    self.split_file.__doc__,
-                    None
+                    self.split_file.__doc__
                 ),
                 self.__gen_QAction(
                     _('Com&bine files...'),
                     self.combine_files,
-                    self.combine_files.__doc__,
-                    None
+                    self.combine_files.__doc__
                 )
             ))
             menus['file'].addSeparator()
@@ -350,14 +346,12 @@ class L7z_GUI(QMainWindow):
                 self.__gen_QAction(
                     _('&Link...'),
                     self.link,
-                    self.link.__doc__,
-                    None
+                    self.link.__doc__
                 ),
                 self.__gen_QAction(
                     _('&Alternate streams'),
                     self.show_alt_streams,
-                    self.show_alt_streams.__doc__,
-                    None
+                    self.show_alt_streams.__doc__
                 )
             ))
             menus['file'].addSeparator()
