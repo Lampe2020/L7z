@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l7z\n"
 "POT-Creation-Date: 2024-08-01 17:21+0200\n"
-"PO-Revision-Date: 2024-08-01 17:22+0200\n"
+"PO-Revision-Date: 2024-08-01 20:49+0200\n"
 "Last-Translator: Christian Lampe <kontakt+translation@lampe2020.de>\n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -176,7 +176,7 @@ msgstr "&Kopiera till..."
 
 #: l7z.py:243
 msgid "&Move to..."
-msgstr "&Kopiera till..."
+msgstr "&Flytta till..."
 
 #: l7z.py:249
 msgid "&Delete"
