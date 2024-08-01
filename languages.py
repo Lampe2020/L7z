@@ -1,14 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-A simple little language module based on gettext, for the use specifically in L7z.
-Usage:
-```
->>> from languages import *
->>> lang_en.install()
->>> # Do whatever you want. Then, if you want to switch to German, you can do:
->>> lang_de.install()   # and boom, now you get the German strings.
-```
+L7z's language module
 """
 
 import gettext, os, sys, conf
@@ -17,22 +10,22 @@ APP_NAME:str = 'l7z'
 LOCALE_DIR:str = os.path.join(os.path.dirname(__file__), 'locales')
 gettext.install(APP_NAME, LOCALE_DIR)
 
-lang_en = gettext.translation(APP_NAME, languages=['en'], fallback=True)
-lang_de = gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=['de'])
-lang_sv = gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=['sv'])
+lang_en = gettext.translation(APP_NAME, languages=['en', 'en_US', 'en_US.UTF-8', 'C', 'C.UTF-8'], fallback=True)
+lang_de = gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=['de', 'de_DE', 'de_DE.UTF-8'])
+lang_sv = gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=['sv', 'sv_SE', 'sv_SE.UTF-8'])
 #lang_ln = gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=['ln'])     # Custom language here, replace ln
 
 match conf.get('L7z', 'lang'):
-    case 'en':
+    case 'en'|'en_US'|'en_US.UTF-8'|'C'|'C.UTF-8':
         lang_en.install()
-    case 'de':
+    case 'de'|'de_DE'|'de_DE.UTF-8':
         lang_de.install()
-    case 'sv':
+    case 'sv'|'sv_SE'|'sv_SE.UTF-8':
         lang_sv.install()
     # case 'ln':             # Custom language here, replace 'ln'
     #     lang_ln.install()  # with the language code of your language
     case language:
-        sys_lang:str = conf.get_sys_lang()[:2]
+        sys_lang:str = conf.get_sys_lang()
         try:
             gettext.translation(APP_NAME, localedir=LOCALE_DIR, languages=[sys_lang])
             print(_('Unsupported lang in conf: {lang}, reverting to {sys_lang}.').format(
@@ -48,4 +41,4 @@ match conf.get('L7z', 'lang'):
             )
             conf.set('L7z', 'lang', value='en')
 
-__all__ = list(obj for obj in locals() if obj.startswith('lang_'))
+__all__:list[str] = list(obj for obj in locals() if obj.startswith('lang_'))

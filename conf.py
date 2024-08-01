@@ -89,7 +89,7 @@ def restore():
         if not re.match(expected_format, config[section][key]):
             config[section][key] = default
         return config[section][key]
-    repair_value('L7z', 'lang', get_sys_lang()[:2], r'^[a-z]{2}(_[A-Z]{2})?$')
+    repair_value('L7z', 'lang', get_sys_lang(), r'^[a-z]{2}(_[A-Z]{2})?$')
     repair_value('L7z', 'use_utc_time', 'no', bool)
     repair_value('L7z', 'timestamp_format', '%Y-%m-%d %H:%M')
     repair_value('Window', 'native_menubar', 'off', bool)
