@@ -100,7 +100,7 @@ def restore():
     repair_value('Fileview', 'sort_by', 'name', f'^(name)|(type)|(date)|(size)|()$')
     repair_value('Fileview', 'flat', 'no', bool)
     repair_value('Fileview', 'second_panel', 'off', bool)
-    repair_value('Fileview', 'auto-refresh', 'no', bool)
+    repair_value('Fileview', 'auto-refresh', 'yes', bool)
     repair_value('Toolbars', 'archive', 'on', bool)
     repair_value('Toolbars', 'standard', 'on', bool)
     repair_value('Toolbars', 'large_buttons', 'yes', bool)
