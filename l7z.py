@@ -636,17 +636,17 @@ class L7z_GUI(QMainWindow):
                 menus['favorites/add'].addActions(
                     self.__gen_QAction(
                         _('Bookmark {i}').format(i=i),
-                        (lambda *args, i=i: self.navigate_to_bookmark(i)),
-                        self.navigate_to_bookmark.__doc__,
+                        (lambda *args, i=i: self.set_bookmark(i)),
+                        self.set_bookmark.__doc__,
                         f'Alt+Shift+{i}'
                     ) for i in range(10)
                 )
                 menus['favorites'].addMenu(menus['favorites/add'])
             menus['favorites'].addActions(
                 self.__gen_QAction(
-                    (conf.get('Locations', f'favorite_{i}', '-') or '-'),
-                    (lambda *args, i=i: self.navigate_to_favorite(i)),
-                    self.navigate_to_favorite.__doc__,
+                    (conf.get('Locations', f'bookmark_{i}', '-') or '-'),
+                    (lambda *args, i=i: self.navigate_to_bookmark(i)),
+                    self.navigate_to_bookmark.__doc__,
                     f'Alt+{i}'
                 ) for i in range(10)
             )
@@ -913,12 +913,12 @@ class L7z_GUI(QMainWindow):
         ... #TODO: Hook this into the GUI
         conf.set('Fileview', 'auto-refresh', ('no' if conf.getbool('Fileview', 'auto-refresh') else 'yes'))
 
-    def navigate_to_favorite(self, i):
-        """Navigates to your i'th favorite"""
-        ... #TODO: Implement this!
-
     def navigate_to_bookmark(self, i):
         """Navigates to your i'th bookmark"""
+        ... #TODO: Implement this!
+
+    def set_bookmark(self, i):
+        """Sets your i'th bookmark to be the selected file"""
         ... #TODO: Implement this!
 
     def show_about(self):
