@@ -639,7 +639,7 @@ class L7z_GUI(QMainWindow):
                         (lambda *args, i=i: self.navigate_to_bookmark(i)),
                         self.navigate_to_bookmark.__doc__,
                         f'Alt+Shift+{i}'
-                    )
+                    ) for i in range(10)
                 )
                 menus['favorites'].addMenu(menus['favorites/add'])
             menus['favorites'].addActions(
