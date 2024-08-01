@@ -527,7 +527,7 @@ class L7z_GUI(QMainWindow):
                     timeformat_list.addAction(self.__gen_QAction(
                         (f'{datetime.datetime.now().strftime(timeformat)}'
                          f'{"Z" if conf.getbool("L7z", "use_utc_time") else ""}'),
-                        (lambda: self.set_timeformat(timeformat)),
+                        (lambda *args, tf=timeformat: self.set_timeformat(tf)),
                         self.set_timeformat.__doc__,
                         None,
                         True
@@ -636,7 +636,7 @@ class L7z_GUI(QMainWindow):
                 menus['favorites/add'].addActions(
                     self.__gen_QAction(
                         _('Bookmark {i}').format(i=i),
-                        (lambda: self.navigate_to_bookmark(i)),
+                        (lambda *args, i=i: self.navigate_to_bookmark(i)),
                         self.navigate_to_bookmark.__doc__,
                         f'Alt+Shift+{i}'
                     )
@@ -645,7 +645,7 @@ class L7z_GUI(QMainWindow):
             menus['favorites'].addActions(
                 self.__gen_QAction(
                     '-',
-                    (lambda: self.navigate_to_favorite(i)),
+                    (lambda *args, i=i: self.navigate_to_favorite(i)),
                     self.navigate_to_favorite.__doc__,
                     f'Alt+{i}'
                 ) for i in range(10)
