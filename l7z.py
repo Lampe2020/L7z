@@ -547,7 +547,6 @@ class L7z_GUI(QMainWindow):
                 menus['view/timeformat'].actions()[-1].setChecked(conf.getbool('L7z', 'use_utc_time'))
                 menus['view'].addMenu(menus['view/timeformat'])
             if True:    # 'view/toolbars'
-                ... #TODO: Implement this menu!
                 visible_toolbars:QActionGroup =QActionGroup(self)
                 visible_toolbars.setExclusive(False)
                 for action in (
