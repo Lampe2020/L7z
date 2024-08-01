@@ -81,6 +81,8 @@ class L7z_GUI(QMainWindow):
         # menu it's currently working on.
         if True:    # 'file'
             if True:    # 'file/7-zip'
+                #TODO: Update this whenever the selection is changed. When a single file is selected, set filename to
+                # the selected file's name, if multiple are selected set it to the parent dir's name.
                 menus['file/7-zip'].addActions((
                     self.__gen_QAction(
                         _('Add to archive…'),
