@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd locales
+source compile_locales.sh
+cd ..
+
 main_script='l7z.py'
 tmpdir_name="/tmp/$(echo $main_script | md5sum | awk '{ print $1 }')"
 echo "tmpdir_name='${tmpdir_name}_*'"
