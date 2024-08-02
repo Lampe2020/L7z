@@ -700,7 +700,68 @@ class L7z_GUI(QMainWindow):
         #############################
         # Initialize the toolbar(s) #
         #############################
-        ... #TODO: Implement this!
+        toolbar:QToolBar = QToolBar('toolbar', self)
+        toolbar.setMovable(False)
+        toolbar.setContextMenuPolicy(Qt.ContextMenuPolicy.PreventContextMenu)
+        toolbar.setToolButtonStyle(
+            Qt.ToolButtonStyle.ToolButtonTextUnderIcon if conf.getbool('Toolbars', 'button_text')
+            else Qt.ToolButtonStyle.ToolButtonIconOnly)
+        archive_toolbar:dict[str, QAction] = {
+            'add': self.__gen_QAction(
+                self.tr('Add'),
+                self.add_to_archive,
+                self.add_to_archive.__doc__
+            ),
+            'extract': self.__gen_QAction(
+                self.tr('Extract'),
+                self.extract_archive,
+                self.extract_archive.__doc__
+            ),
+            'test': self.__gen_QAction(
+                self.tr('Test'),
+                self.test_archive,
+                self.test_archive.__doc__
+            )
+        }
+        for action in archive_toolbar:
+            archive_toolbar[action].setIcon(QIcon(os.path.join(
+                INSTALL_DIR, 'icons', 'toolbar', ('big' if conf.getbool('Toolbars', 'large_buttons') else ''),
+                #FIXME: This setting is somehow inverted?!?
+                f'{action}.png'
+            )))
+        standard_toolbar:dict[str, QAction] = {
+            'copy': self.__gen_QAction(
+                self.tr('Copy'),
+                self.copy_to,
+                self.copy_to.__doc__
+            ),
+            'move': self.__gen_QAction(
+                self.tr('Move'),
+                self.move_to,
+                self.move_to.__doc__
+            ),
+            'delete': self.__gen_QAction(
+                self.tr('Delete'),
+                self.delete_file,
+                self.delete_file.__doc__
+            ),
+            'info': self.__gen_QAction(
+                self.tr('Info'),
+                self.show_props,
+                self.show_props.__doc__
+            )
+        }
+        for action in standard_toolbar:
+            standard_toolbar[action].setIcon(QIcon(os.path.join(
+                INSTALL_DIR, 'icons', 'toolbar', ('big' if conf.getbool('Toolbars', 'large_buttons') else ''),
+                #FIXME: This setting is somehow inverted?!?
+                f'{action}.png'
+            )))
+        if conf.getbool('Toolbars', 'archive'):
+            toolbar.addActions(archive_toolbar.values())
+        if conf.getbool('Toolbars', 'standard'):
+            toolbar.addActions(standard_toolbar.values())
+        self.addToolBar(toolbar)
 
         ###############################
         # Initialize the file view(s) #
@@ -764,6 +825,14 @@ class L7z_GUI(QMainWindow):
 
     def rename_file(self):
         """Rename the selected file"""
+        ... #TODO: Implement this!
+
+    def extract_archive(self):
+        """Extract the selected archive"""
+        ... #TODO: Implement this!
+
+    def test_archive(self):
+        """Test the selected archive for errors"""
         ... #TODO: Implement this!
 
     def copy_to(self):
