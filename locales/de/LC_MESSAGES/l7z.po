@@ -1,7 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: l7z\n"
-"POT-Creation-Date: 2024-08-01 17:21+0200\n"
+"POT-Creation-Date: 2024-08-02 21:51+0200\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Christian Lampe <kontakt+translation@lampe2020."
 "de>\n"
 "Language-Team: German\n"
@@ -352,13 +353,41 @@ msgstr "Temporäre Dateien Löschen..."
 
 #: l7z.py:679
 msgid "&Contents..."
-msgstr ""
+msgstr "&Hilfethemen"
 
 #: l7z.py:688
 msgid "&About L7z..."
-msgstr ""
+msgstr "Ü&ber L7z..."
 
-#: l7z.py:997
+#: l7z.py:706
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: l7z.py:711
+msgid "Extract"
+msgstr "Entpacken"
+
+#: l7z.py:716
+msgid "Test"
+msgstr "Überprüfen"
+
+#: l7z.py:729
+msgid "Copy"
+msgstr "Kopieren"
+
+#: l7z.py:734
+msgid "Move"
+msgstr "Verschieben"
+
+#: l7z.py:739
+msgid "Delete"
+msgstr "LöschenLöschen"
+
+#: l7z.py:744
+msgid "Info"
+msgstr "Eigenschaften"
+
+#: l7z.py:1066
 msgid "Starting L7z on {platform}..."
 msgstr "Starte L7z auf {platform}..."
 
