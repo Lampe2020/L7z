@@ -10,21 +10,26 @@ TODO: Write short description and usage help, to be output when help is requeste
 import sys, os, conf, datetime
 from typing import Callable, Literal
 
+INSTALL_DIR:str = os.path.dirname(__file__)
+
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMenuBar, QMenu, QDialog, QToolBar
+from PyQt6.QtGui import QIcon, QAction, QActionGroup
+from PyQt6.QtCore import Qt, QTranslator
+
 # Initialize the translation right-away so even the no-import message can be localized.
-from languages import *
+translator:QTranslator = QTranslator()
+try:
+    translator.load(os.path.join(INSTALL_DIR, 'locales', f'{conf.get("L7z", "lang")}.qm'))
+except:
+    print(f'Error loading translation file locales/{conf.get("L7z", "lang", "no_LN")}.qm')
 
 if __name__ != '__main__':
-    msg:str = _("L7z is not intended to be imported!")
+    msg:str = self.tr("L7z is not intended to be imported!")
     print(f'\n\n{msg}\n\n', file=sys.stderr)
     raise ImportError(msg)
 
-INSTALL_DIR:str = os.path.dirname(__file__)
-
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMenuBar, QMenu, QDialog
-from PyQt6.QtGui import QIcon, QAction, QActionGroup
-from PyQt6.QtCore import Qt
-
 l7z_app:QApplication = QApplication(sys.argv)
+l7z_app.installTranslator(translator)
 
 class L7z_GUI(QMainWindow):
     """The main GUI class"""
@@ -34,24 +39,24 @@ class L7z_GUI(QMainWindow):
     __view_sizes:tuple[str, ...] = 'large|small|list|detail'.split('|')
     __sort_by:tuple[str, ...] = 'name|type|date|size|none'.split('|')
     __timeformats:tuple[str, ...] = (
-        _('%Y-%m-%d'),
-        _('%Y-%m-%d %H:%M'),
-        _('%Y-%m-%d %H:%M:%S'),
-        _('%Y-%m-%d %H:%M:%S.%f'),
-        #_('%Y-%m-%d %H:%M:%S.%f')   # There's no Python strftime directive for more precision than %f
+        '%Y-%m-%d',
+        '%Y-%m-%d %H:%M',
+        '%Y-%m-%d %H:%M:%S',
+        '%Y-%m-%d %H:%M:%S.%f',
+        #'%Y-%m-%d %H:%M:%S.%f'  # There's no Python strftime directive for more precision than %f
     )
 
     def __init__(self):
         """Initialize the main GUI"""
         super().__init__()
-        self.setWindowTitle(_('7-zip • Unofficial GUI (WIP!)'))
+        self.setWindowTitle(self.tr('7-zip • Unofficial GUI (WIP!)'))
         try:
             self.setGeometry(*(int(d) for d in conf.get('Window', 'dimensions', '0,0,800,600').split(',')))
             if conf.getbool('Window', 'maximized', False):
                 self.setWindowState(Qt.WindowState.WindowMaximized)
         except:
-            print(_('Could not set window geometry!'))
-        self.setWindowIcon(QIcon(os.path.join(INSTALL_DIR, 'icons', '7-zip.png')))
+            print(self.tr('Could not set window geometry!'))
+        self.setWindowIcon(QIcon(os.path.join(INSTALL_DIR, 'icons', '7z.png')))
         self.menubar:QMenuBar = self.menuBar()
         self.menubar.setNativeMenuBar(conf.getbool('L7z', 'native_menubar'))
 
@@ -59,23 +64,23 @@ class L7z_GUI(QMainWindow):
         # Initialize the menu bar #
         ###########################
         menus:dict[str, QMenu] = {
-            'file': QMenu(_('&File'), self),
-            'edit': QMenu(_('&Edit'), self),
-            'view': QMenu(_('&View'), self),
-            'favorites': QMenu(_('F&avorites'), self),
-            'tools': QMenu(_('&Tools'), self),
-            'help': QMenu(_('&Help'), self)
+            'file': QMenu(self.tr('&File'), self),
+            'edit': QMenu(self.tr('&Edit'), self),
+            'view': QMenu(self.tr('&View'), self),
+            'favorites': QMenu(self.tr('F&avorites'), self),
+            'tools': QMenu(self.tr('&Tools'), self),
+            'help': QMenu(self.tr('&Help'), self)
         }
         menus.update({**menus,
             'file/7-zip': QMenu('7-Zip', menus['file']),
-            'file/crc': QMenu(_('CRC'), menus['file']),
+            'file/crc': QMenu(self.tr('CRC'), menus['file']),
                                    # ↓ is updated whenever the menu is opened, so doesn't need to be translated
             'view/timeformat': QMenu(datetime.datetime.now().strftime('%Y-%m-%d'), menus['view']),
-            'view/toolbars': QMenu(_('Toolbars'), menus['view']),
-            'favorites/add': QMenu(_('&Add folder to favorites as'), menus['favorites'])
+            'view/toolbars': QMenu(self.tr('Toolbars'), menus['view']),
+            'favorites/add': QMenu(self.tr('&Add folder to favorites as'), menus['favorites'])
         })
         menus.update({**menus,
-            'file/7-zip/crc': QMenu(_('CRC SHA'), menus['file/7-zip'])
+            'file/7-zip/crc': QMenu(self.tr('CRC SHA'), menus['file/7-zip'])
         })
         # In the following there are a few `if True` blocks, they are just for structuring the code according to the
         # menu it's currently working on.
@@ -85,37 +90,37 @@ class L7z_GUI(QMainWindow):
                 # the selected file's name, if multiple are selected set it to the parent dir's name.
                 menus['file/7-zip'].addActions((
                     self.__gen_QAction(
-                        _('Add to archive...'),
+                        self.tr('Add to archive...'),
                         self.add_to_archive,
                         self.add_to_archive.__doc__,
                         None
                     ),
                     self.__gen_QAction(
-                        _('Compress and email...'),
+                        self.tr('Compress and email...'),
                         self.add_to_archive,
                         self.add_to_archive.__doc__,
                         None
                     ),
                     self.__gen_QAction(
-                        _('Add to "{filename}.7z"'),
+                        self.tr('Add to "{filename}.7z"'),
                         self.add_to_archive,
                         self.add_to_archive.__doc__,
                         None
                     ),
                     self.__gen_QAction(
-                        _('Compress to "{filename}".7z and email'),
+                        self.tr('Compress to "{filename}".7z and email'),
                         self.add_to_archive,
                         self.add_to_archive.__doc__,
                         None
                     ),
                     self.__gen_QAction(
-                        _('Add to "{filename}.zip"'),
+                        self.tr('Add to "{filename}.zip"'),
                         self.add_to_archive,
                         self.add_to_archive.__doc__,
                         None
                     ),
                     self.__gen_QAction(
-                        _('Compress to "{filename}.zip" and email'),
+                        self.tr('Compress to "{filename}.zip" and email'),
                         self.add_to_archive,
                         self.add_to_archive.__doc__,
                         None
@@ -124,43 +129,43 @@ class L7z_GUI(QMainWindow):
                 if True:    # 'file/7-zip/crc
                     menus['file/7-zip/crc'].addActions((
                         self.__gen_QAction(
-                            _('CRC-32'),
+                            self.tr('CRC-32'),
                             (lambda: self.show_checksum('CRC-32')),
                             self.show_checksum.__doc__,
                             None
                         ),
                         self.__gen_QAction(
-                            _('CRC-64'),
+                            self.tr('CRC-64'),
                             (lambda: self.show_checksum('CRC-64')),
                             self.show_checksum.__doc__,
                             None
                         ),
                         self.__gen_QAction(
-                            _('XXH64'),
+                            self.tr('XXH64'),
                             (lambda: self.show_checksum('XXH64')),
                             self.show_checksum.__doc__,
                             None
                         ),
                         self.__gen_QAction(
-                            _('SHA-1'),
+                            self.tr('SHA-1'),
                             (lambda: self.show_checksum('SHA-1')),
                             self.show_checksum.__doc__,
                             None
                         ),
                         self.__gen_QAction(
-                            _('SHA-256'),
+                            self.tr('SHA-256'),
                             (lambda: self.show_checksum('SHA-256')),
                             self.show_checksum.__doc__,
                             None
                         ),
                         self.__gen_QAction(
-                            _('BLAKE2sp'),
+                            self.tr('BLAKE2sp'),
                             (lambda: self.show_checksum('BLAKE2sp')),
                             self.show_checksum.__doc__,
                             None
                         ),
                         self.__gen_QAction(
-                            _('*'),
+                            self.tr('*'),
                             (lambda: self.show_checksum('*')),
                             self.show_checksum.__doc__,
                             None
@@ -169,13 +174,13 @@ class L7z_GUI(QMainWindow):
                     menus['file/7-zip/crc'].addSeparator()
                     menus['file/7-zip/crc'].addActions((
                         self.__gen_QAction(
-                            _('SHA-256 -> {filename}.sha256'),
+                            self.tr('SHA-256 -> {filename}.sha256'),
                             self.save_sha256,
                             self.save_sha256.__doc__,
                             None
                         ),
                         self.__gen_QAction(
-                            _('Test Archive : Checksum'),
+                            self.tr('Test Archive : Checksum'),
                             self.save_sha256,
                             self.save_sha256.__doc__,
                             None
@@ -185,41 +190,41 @@ class L7z_GUI(QMainWindow):
                 menus['file'].addMenu(menus['file/7-zip'])
             menus['file'].addActions((
                 self.__gen_QAction(
-                    _('&Open'),
+                    self.tr('&Open'),
                     self.open_selected,
                     self.open_selected.__doc__,
                     'Enter'
                 ),
                 self.__gen_QAction(
-                    _('Open &Inside'),
+                    self.tr('Open &Inside'),
                     self.open_selected_inside,
                     self.open_selected_inside.__doc__,
                     'Ctrl+PgDn'
                 ),
                 self.__gen_QAction(
-                    _('Open Inside *'),
+                    self.tr('Open Inside *'),
                     self.open_selected_star,
                     self.open_selected_star.__doc__
                 ),
                 self.__gen_QAction(
-                    _('Open Inside #'),
+                    self.tr('Open Inside #'),
                     self.open_selected_hashtag,
                     self.open_selected_hashtag.__doc__
                 ),
                 self.__gen_QAction(
-                    _('Open O&utside'),
+                    self.tr('Open O&utside'),
                     self.open_selected_outside,
                     self.open_selected_outside.__doc__,
                     'Shift+Enter'
                 ),
                 self.__gen_QAction(
-                    _('&View'),
+                    self.tr('&View'),
                     self.view_selected,
                     self.view_selected.__doc__,
                     'F3'
                 ),
                 self.__gen_QAction(
-                    _('&Edit'),
+                    self.tr('&Edit'),
                     self.edit_selected,
                     self.edit_selected.__doc__,
                     'F4'
@@ -228,25 +233,25 @@ class L7z_GUI(QMainWindow):
             menus['file'].addSeparator()
             menus['file'].addActions((
                 self.__gen_QAction(
-                    _('Rena&me'),
+                    self.tr('Rena&me'),
                     self.rename_file,
                     self.rename_file.__doc__,
                     'F2'
                 ),
                 self.__gen_QAction(
-                    _('&Copy to...'),
+                    self.tr('&Copy to...'),
                     self.rename_file,
                     self.rename_file.__doc__,
                     'F5'
                 ),
                 self.__gen_QAction(
-                    _('&Move to...'),
+                    self.tr('&Move to...'),
                     self.rename_file,
                     self.rename_file.__doc__,
                     'F6'
                 ),
                 self.__gen_QAction(
-                    _('&Delete'),
+                    self.tr('&Delete'),
                     self.rename_file,
                     self.rename_file.__doc__,
                     'Del'
@@ -255,12 +260,12 @@ class L7z_GUI(QMainWindow):
             menus['file'].addSeparator()
             menus['file'].addActions((
                 self.__gen_QAction(
-                    _('&Split file...'),
+                    self.tr('&Split file...'),
                     self.split_file,
                     self.split_file.__doc__
                 ),
                 self.__gen_QAction(
-                    _('Com&bine files...'),
+                    self.tr('Com&bine files...'),
                     self.combine_files,
                     self.combine_files.__doc__
                 )
@@ -268,13 +273,13 @@ class L7z_GUI(QMainWindow):
             menus['file'].addSeparator()
             menus['file'].addActions((
                 self.__gen_QAction(
-                    _('P&roperties'),
+                    self.tr('P&roperties'),
                     self.show_props,
                     self.show_props.__doc__,
                     'Alt+Enter'
                 ),
                 self.__gen_QAction(
-                    _('Comme&nt...'),
+                    self.tr('Comme&nt...'),
                     self.comment,
                     self.comment.__doc__,
                     'Ctrl+Z'
@@ -284,43 +289,43 @@ class L7z_GUI(QMainWindow):
             if True:    # 'file/crc'
                 menus['file/crc'].addActions((
                     self.__gen_QAction(
-                        _('CRC-32'),
+                        self.tr('CRC-32'),
                         (lambda: self.show_checksum('CRC-32')),
                         self.show_checksum.__doc__,
                         None
                     ),
                     self.__gen_QAction(
-                        _('CRC-64'),
+                        self.tr('CRC-64'),
                         (lambda: self.show_checksum('CRC-64')),
                         self.show_checksum.__doc__,
                         None
                     ),
                     self.__gen_QAction(
-                        _('XXH64'),
+                        self.tr('XXH64'),
                         (lambda: self.show_checksum('XXH64')),
                         self.show_checksum.__doc__,
                         None
                     ),
                     self.__gen_QAction(
-                        _('SHA-1'),
+                        self.tr('SHA-1'),
                         (lambda: self.show_checksum('SHA-1')),
                         self.show_checksum.__doc__,
                         None
                     ),
                     self.__gen_QAction(
-                        _('SHA-256'),
+                        self.tr('SHA-256'),
                         (lambda: self.show_checksum('SHA-256')),
                         self.show_checksum.__doc__,
                         None
                     ),
                     self.__gen_QAction(
-                        _('BLAKE2sp'),
+                        self.tr('BLAKE2sp'),
                         (lambda: self.show_checksum('BLAKE2sp')),
                         self.show_checksum.__doc__,
                         None
                     ),
                     self.__gen_QAction(
-                        _('*'),
+                        self.tr('*'),
                         (lambda: self.show_checksum('*')),
                         self.show_checksum.__doc__,
                         None
@@ -329,13 +334,13 @@ class L7z_GUI(QMainWindow):
             menus['file'].addSeparator()
             menus['file'].addActions((
                 self.__gen_QAction(
-                    _('Create folder'),
+                    self.tr('Create folder'),
                     self.new_folder,
                     self.new_folder.__doc__,
                     'F7'
                 ),
                 self.__gen_QAction(
-                    _('Create file'),
+                    self.tr('Create file'),
                     self.new_file,
                     self.new_file.__doc__,
                     'Ctrl+N'
@@ -344,12 +349,12 @@ class L7z_GUI(QMainWindow):
             menus['file'].addSeparator()
             menus['file'].addActions((
                 self.__gen_QAction(
-                    _('&Link...'),
+                    self.tr('&Link...'),
                     self.link,
                     self.link.__doc__
                 ),
                 self.__gen_QAction(
-                    _('&Alternate streams'),
+                    self.tr('&Alternate streams'),
                     self.show_alt_streams,
                     self.show_alt_streams.__doc__
                 )
@@ -357,7 +362,7 @@ class L7z_GUI(QMainWindow):
             menus['file'].addSeparator()
             menus['file'].addActions((
                 self.__gen_QAction(
-                    _('E&xit'),
+                    self.tr('E&xit'),
                     self.quit,
                     self.quit.__doc__,
                     'Alt+F4'
@@ -368,31 +373,31 @@ class L7z_GUI(QMainWindow):
         if True:    # 'edit'
             menus['edit'].addActions((
                 self.__gen_QAction(
-                    _('Select &All'),
+                    self.tr('Select &All'),
                     self.select_all,
                     self.select_all.__doc__,
                     'Shift++'   # 'Shift+[NumPad+]'
                 ),
                 self.__gen_QAction(
-                    _('Deselect All'),
+                    self.tr('Deselect All'),
                     self.deselect_all,
                     self.deselect_all.__doc__,
                     'Shift+-'   # 'Shift+[NumPad-]'
                 ),
                 self.__gen_QAction(
-                    _('&Invert selection'),
+                    self.tr('&Invert selection'),
                     self.select_all,
                     self.select_all.__doc__,
                     '*'         # '[NumPad*]'
                 ),
                 self.__gen_QAction(
-                    _('Select...'),
+                    self.tr('Select...'),
                     self.select_all,
                     self.select_all.__doc__,
                     '+'         # '[NumPad+]'
                 ),
                 self.__gen_QAction(
-                    _('Deselect...'),
+                    self.tr('Deselect...'),
                     self.select_all,
                     self.select_all.__doc__,
                     '-'         # '[NumPad-]'
@@ -401,13 +406,13 @@ class L7z_GUI(QMainWindow):
             menus['edit'].addSeparator()
             menus['edit'].addActions((
                 self.__gen_QAction(
-                    _('Select by Type'),
+                    self.tr('Select by Type'),
                     self.select_all,
                     self.select_all.__doc__,
                     'Alt++'     # 'Alt+[NumPad+]'
                 ),
                 self.__gen_QAction(
-                    _('Deselect by Type'),
+                    self.tr('Deselect by Type'),
                     self.deselect_all,
                     self.deselect_all.__doc__,
                     'Alt+-'     # 'Alt+[NumPad-]'
@@ -421,28 +426,28 @@ class L7z_GUI(QMainWindow):
             view_size.setExclusive(True)
             for action in (
                 self.__gen_QAction(
-                    _('Lar&ge icons'),
+                    self.tr('Lar&ge icons'),
                     (lambda: self.view_size('large')),
                     self.view_size.__doc__,
                     'Ctrl+1',
                     True
                 ),
                 self.__gen_QAction(
-                    _('S&mall icons'),
+                    self.tr('S&mall icons'),
                     (lambda: self.view_size('small')),
                     self.view_size.__doc__,
                     'Ctrl+2',
                     True
                 ),
                 self.__gen_QAction(
-                    _('&List'),
+                    self.tr('&List'),
                     (lambda: self.view_size('list')),
                     self.view_size.__doc__,
                     'Ctrl+3',
                     True
                 ),
                 self.__gen_QAction(
-                    _('&Details'),
+                    self.tr('&Details'),
                     (lambda: self.view_size('detail')),
                     self.view_size.__doc__,
                     'Ctrl+4',
@@ -457,35 +462,35 @@ class L7z_GUI(QMainWindow):
             sort_by.setExclusive(True)
             for action in (
                 self.__gen_QAction(
-                    _('Name'),
+                    self.tr('Name'),
                     (lambda: self.sort_by('name')),
                     self.sort_by.__doc__,
                     'Ctrl+F3',
                     True
                 ),
                 self.__gen_QAction(
-                    _('Type'),
+                    self.tr('Type'),
                     (lambda: self.sort_by('type')),
                     self.sort_by.__doc__,
                     'Ctrl+F4',
                     True
                 ),
                 self.__gen_QAction(
-                    _('Date'),
+                    self.tr('Date'),
                     (lambda: self.sort_by('date')),
                     self.sort_by.__doc__,
                     'Ctrl+F5',
                     True
                 ),
                 self.__gen_QAction(
-                    _('Size'),
+                    self.tr('Size'),
                     (lambda: self.sort_by('size')),
                     self.sort_by.__doc__,
                     'Ctrl+F6',
                     True
                 ),
                 self.__gen_QAction(
-                    _('Unsorted'),
+                    self.tr('Unsorted'),
                     (lambda: self.sort_by('none')),
                     self.sort_by.__doc__,
                     'Ctrl+F7',
@@ -498,14 +503,14 @@ class L7z_GUI(QMainWindow):
             menus['view'].addSeparator()
             menus['view'].addActions((
                 self.__gen_QAction(
-                    _('Flat view'),
+                    self.tr('Flat view'),
                     self.flat_view,
                     self.flat_view.__doc__,
                     None,
                     True
                 ),
                 self.__gen_QAction(
-                    _('&2 Panels'),
+                    self.tr('&2 Panels'),
                     self.two_panels,
                     self.two_panels.__doc__,
                     'F9',
@@ -530,11 +535,11 @@ class L7z_GUI(QMainWindow):
                     (timeformat_list.actions()[self.__timeformats.index(conf.get('L7z', 'timestamp_format'))]
                      .setChecked(True))
                 except ValueError:
-                    print(_('Custom timestamp format detected: {timestamp_format}')
+                    print(self.tr('Custom timestamp format detected: {timestamp_format}')
                           .format(timestamp_format=conf.get('L7z', 'timestamp_format')))
                 menus['view/timeformat'].addActions(timeformat_list.actions())
                 menus['view/timeformat'].addAction(self.__gen_QAction(
-                    _('UTC'),
+                    self.tr('UTC'),
                     self.toggle_utc,
                     self.toggle_utc.__doc__,
                     None,
@@ -547,14 +552,14 @@ class L7z_GUI(QMainWindow):
                 visible_toolbars.setExclusive(False)
                 for action in (
                     self.__gen_QAction(
-                        _('Archive Toolbar'),
+                        self.tr('Archive Toolbar'),
                         self.toggle_archive_toolbar,
                         self.toggle_archive_toolbar.__doc__,
                         None,
                         True
                     ),
                     self.__gen_QAction(
-                        _('Standard Toolbar'),
+                        self.tr('Standard Toolbar'),
                         self.toggle_standard_toolbar,
                         self.toggle_standard_toolbar.__doc__,
                         None,
@@ -570,14 +575,14 @@ class L7z_GUI(QMainWindow):
                 toolbarbutton_settings.setExclusive(False)
                 for action in (
                     self.__gen_QAction(
-                        _('Large Buttons'),
+                        self.tr('Large Buttons'),
                         self.toggle_large_toolbar_buttons,
                         self.toggle_large_toolbar_buttons.__doc__,
                         None,
                         True
                     ),
                     self.__gen_QAction(
-                        _('Show Buttons Text'),
+                        self.tr('Show Buttons Text'),
                         self.toggle_toolbar_button_text,
                         self.toggle_toolbar_button_text.__doc__,
                         None,
@@ -591,31 +596,31 @@ class L7z_GUI(QMainWindow):
                 menus['view'].addMenu(menus['view/toolbars'])
             menus['view'].addActions((
                 self.__gen_QAction(
-                    _('Open Root Folder'),
+                    self.tr('Open Root Folder'),
                     self.navigate_to_root,
                     self.navigate_to_root.__doc__,
                     '\\'
                 ),
                 self.__gen_QAction(
-                    _('Up One Level'),
+                    self.tr('Up One Level'),
                     self.navigate_up,
                     self.navigate_up.__doc__,
                     'Backspace'
                 ),
                 self.__gen_QAction(
-                    _('Folders History...'),
+                    self.tr('Folders History...'),
                     self.show_history,
                     self.show_history.__doc__,
                     'Alt+F12'
                 ),
                 self.__gen_QAction(
-                    _('Refresh'),
+                    self.tr('Refresh'),
                     self.refresh_fileview,
                     self.refresh_fileview.__doc__,
                     'Ctrl+R'
                 ),
                 self.__gen_QAction(
-                    _('Auto Refresh'),
+                    self.tr('Auto Refresh'),
                     self.toggle_auto_refresh,
                     self.toggle_auto_refresh.__doc__,
                     None,
@@ -629,7 +634,7 @@ class L7z_GUI(QMainWindow):
             if True:    # 'favorites/add'
                 menus['favorites/add'].addActions(
                     self.__gen_QAction(
-                        _('Bookmark {i}').format(i=i),
+                        self.tr('Bookmark {i}').format(i=i),
                         (lambda *args, i=i: self.set_bookmark(i)),
                         self.set_bookmark.__doc__,
                         f'Alt+Shift+{i}'
@@ -649,7 +654,7 @@ class L7z_GUI(QMainWindow):
         if True:    # 'tools'
             menus['tools'].addAction((
                 self.__gen_QAction(
-                    _('&Options...'),
+                    self.tr('&Options...'),
                     self.show_settings_dialog,
                     self.show_settings_dialog.__doc__
                 )
@@ -657,14 +662,14 @@ class L7z_GUI(QMainWindow):
             menus['tools'].addSeparator()
             menus['tools'].addAction((
                 self.__gen_QAction(
-                    _('&Benchmark'),
+                    self.tr('&Benchmark'),
                     self.benchmark,
                     self.benchmark.__doc__
                 )
             ))
             menus['tools'].addAction((
                 self.__gen_QAction(
-                    _('Delete Temporary Files...'),
+                    self.tr('Delete Temporary Files...'),
                     self.del_temp_files,
                     self.del_temp_files.__doc__
                 )
@@ -676,7 +681,7 @@ class L7z_GUI(QMainWindow):
         if True:    # 'help'
             menus['help'].addAction(
                 self.__gen_QAction(
-                    _('&Contents...'),
+                    self.tr('&Contents...'),
                     self.show_help_dialog,
                     self.show_help_dialog.__doc__,
                     'F1'
@@ -685,7 +690,7 @@ class L7z_GUI(QMainWindow):
             menus['help'].addSeparator()
             menus['help'].addAction(
                 self.__gen_QAction(
-                    _('&About L7z...'),
+                    self.tr('&About L7z...'),
                     self.show_about_dialog,
                     self.show_about_dialog.__doc__
                 )
@@ -992,9 +997,6 @@ class L7z_GUI(QMainWindow):
             event.accept()
         else:
             event.ignore()
-
-#debug
-print(_('Starting L7z on {platform}...').format(platform=sys.platform))
 
 main_window:L7z_GUI = L7z_GUI()
 main_window.show()

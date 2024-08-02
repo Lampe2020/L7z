@@ -6,6 +6,7 @@ L7z config handler
 """
 
 import configparser, typing, os, re
+from PyQt6.QtCore import QLocale
 
 config:configparser.ConfigParser = configparser.ConfigParser(interpolation=None)
 configpath:str = os.path.expanduser('~/.config/l7z.conf')
@@ -18,7 +19,7 @@ except configparser.ParsingError:
 def get_sys_lang() -> str:
     """Retrieves the default language."""
     try:
-        return os.environ['LANG']
+        return QLocale.system().name()
     except OSError:
         return 'en'
 
