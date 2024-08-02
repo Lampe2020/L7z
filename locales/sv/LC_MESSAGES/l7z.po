@@ -1,7 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: l7z\n"
-"POT-Creation-Date: 2024-08-01 17:21+0200\n"
+"POT-Creation-Date: 2024-08-02 21:51+0200\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Christian Lampe <kontakt+translation@lampe2020.de>\n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -357,7 +358,35 @@ msgstr "&Hjälp..."
 msgid "&About L7z..."
 msgstr "&Om L7z..."
 
-#: l7z.py:997
+#: l7z.py:706
+msgid "Add"
+msgstr "Lägg till"
+
+#: l7z.py:711
+msgid "Extract"
+msgstr "Packa upp"
+
+#: l7z.py:716
+msgid "Test"
+msgstr "Testa"
+
+#: l7z.py:729
+msgid "Copy"
+msgstr "Kopiera"
+
+#: l7z.py:734
+msgid "Move"
+msgstr "Flytta"
+
+#: l7z.py:739
+msgid "Delete"
+msgstr "Ta bort"
+
+#: l7z.py:744
+msgid "Info"
+msgstr "Egenskaper"
+
+#: l7z.py:1066
 msgid "Starting L7z on {platform}..."
 msgstr "Startar L7z på {platform}..."
 
