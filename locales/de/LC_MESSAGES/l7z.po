@@ -228,7 +228,7 @@ msgstr "Alle abwählen"
 
 #: l7z.py:383
 msgid "&Invert selection"
-msgstr "Auswah &invertieren"
+msgstr "Auswahl &invertieren"
 
 #: l7z.py:389
 msgid "Select..."
