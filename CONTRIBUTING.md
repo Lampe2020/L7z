@@ -10,7 +10,14 @@ to write code together with the goal of creating and maintaining a GUI for 7-zip
 * Max line length: 120 characters (the PyCharm default right margin line position)   
 * Comments should be tab-aligned (the first character starting the comment should be on a position in the line 
   divisible by four if the first character in each line is character 0)   
-* Use type annotations where possible   
+* Use type annotations where possible
+
+## About AI
+Try to avoid having your code written by or edited by AI tooling. You may use AI to suggest things to you, but make 
+sure to not blindly copy-paste code from the AI and try to submit it here. Even if the code works and it is not 
+immediately obvious that it is AI-authored code, it still runs the risk of reducing the code quality and 
+maintainability even lower than it already is.   
+If code you submit is suspected to be largely or entirely written by AI, that is a valid reason to reject its merge.   
 
 # Issues and PRs   
 If you see a problem in the program and it hasn't been reported yet, feel free to open an Issue on GitHub.   
